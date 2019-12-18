@@ -10,6 +10,7 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 // Pages
 import home from "./pages/home";
 import login from "./pages/login";
+import signin from "./pages/signin";
 import signup from "./pages/signup";
 
 // Components
@@ -19,11 +20,10 @@ import Navbar from './components/Navbar';
 const theme = createMuiTheme({
   palette: {
     common: {black: "#000", white: "#fff" },
-    // background: {paper: 'rgba(228, 228, 228, 1)', default: "rgba(255, 227, 227, 1)"},
-    background: {paper: 'rgb(242, 234, 186)', default: "rgba(255, 227, 227, 1)"},
-    primary: {light: "rgba(255, 84, 84, 1)", main: "rgba(255, 0, 0, 1)", dark: "rgba(201, 0, 0, 1)", contrastText: "#fff"},
-    secondary: {light: "rgba(243, 199, 84, 1)",main:"rgba(215, 157, 1, 1)",dark:"rgba(194, 142, 0, 1)",contrastText:"#fff"},
-    error: {light: "#e57373", main:"#f44336",dark:"#d32f2f",contrastText:"#fff"},
+    background: {paper: 'whitesmoke', default: "white"},
+    secondary: {light: "#ff4081", main: "#f50057", dark: "#c51162", contrastText: "#fff"},
+    primary: {light: "#4d5eff",main:"#0018ff",dark:"#0013ce",contrastText:"#fff"},
+    error: {light: "#ff4242", main:"#ff0000",dark:"#c50000",contrastText:"#fff"},
     text: {primary:"rgba(0, 0, 0, 0.87)",secondary:"rgba(0, 0, 0, 0.54)",disabled:"rgba(0, 0, 0, 0.38)",hint:"rgba(0, 0, 0, 0.38)"}
   },
   typography: {
@@ -42,6 +42,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={home}/>
               <Route exact path='/login' component={login}/>
+              {/* <Route exact path='/login' component={signin}/> */}
               <Route exact path='/signup' component={signup}/>
             </Switch>
           </div>
