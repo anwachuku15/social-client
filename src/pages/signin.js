@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+
+// Material-UI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -68,7 +70,12 @@ export default function SignIn() {
       .post('/login', userData)
       .then(res => {
         console.log(res.data);
-        console.log(userData)
+        console.log(userData);
+        localStorage.setItem('fbIdToken', `Bearer ${res.data.token}`);
+        const loginTime = new Date(jwtDecode(res.data.token).iat * 1000);
+        const expDate = new Date(jwtDecode(res.data.token).exp * 1000);
+        localStorage.setItem('loginTime', loginTime);
+        localStorage.setItem('expDate', expDate);
         setLoading(false);
         history.push('/');
       })
@@ -76,7 +83,6 @@ export default function SignIn() {
         setErrors(err.response.data);
         setLoading(false);
       })
-    
   }
 
   return (

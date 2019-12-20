@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import CoolIcon from '../images/coolblue.png';
 import { Link } from 'react-router-dom';
 
-// Redux
+// REDUX
 import { connect } from 'react-redux';
-import { loginUser } from '../redux/actions/userActions';
+import { registerUser } from '../redux/actions/userActions';
 
 // Material-UI
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -21,14 +21,15 @@ const styles = (theme) => ({
 })
 
 
-class login extends Component {
+class signup extends Component {
 	
 	constructor(){
 		super();
 		this.state = {
 			email: '',
-			password: '',
-			// loading: false,
+      password: '',
+      confirmPassword: '',
+      handle: '',
 			errors: {}
 		}
 	}
@@ -41,14 +42,16 @@ class login extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		// this.setState({
-		// 	loading: true
-		// });
-		const userData = {
+		this.setState({
+			loading: true
+		});
+		const newUserData = {
 			email: this.state.email,
-			password: this.state.password
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword,
+      handle: this.state.handle
 		}
-		this.props.loginUser(userData, this.props.history);
+		this.props.registerUser(newUserData, this.props.history);
 	}
 
 	handleChange = (e) => {
@@ -60,20 +63,27 @@ class login extends Component {
 	render() {
 		const { classes, UI: { loading } } = this.props;
 		const { errors } = this.state;
-		
-		// if (token) {
-    //   return <Redirect to="/" />;
-    // }
 		return (
 			<Grid container className={classes.form}>
 				<Grid item sm />
 				<Grid item sm>
 					<img src={CoolIcon} alt='cool' className={classes.image} />
-					{/* h1 good for SEO */}
 					<Typography variant="h2" className={classes.pageTitle}>
-						Login
+						Sign Up
 					</Typography>
 					<form onSubmit={this.handleSubmit} noValidate>
+						<TextField 
+							id='handle' 
+							name='handle' 
+							type='text' 
+							label='Username' 
+							className={classes.textField}
+							helperText={errors.handle}
+							error={errors.handle ? true : false}
+							value={this.state.handle} 
+							onChange={this.handleChange} 
+							fullWidth 
+						/>
 						<TextField 
 							id='email' 
 							name='email' 
@@ -98,19 +108,31 @@ class login extends Component {
 							onChange={this.handleChange} 
 							fullWidth 
 						/>
+            <TextField 
+							id='confirmPassword' 
+							name='confirmPassword' 
+							type='password' 
+							label='Confirm Password' 
+							className={classes.textField}
+							helperText={errors.confirmPassword}
+							error={errors.confirmPassword ? true : false}
+							value={this.state.confirmPassword} 
+							onChange={this.handleChange} 
+							fullWidth 
+						/>
 						{errors.general && (
 							<Typography variant='body2' className={classes.customError}>
 								{errors.general}
 							</Typography>
 						)}
 						<Button type='submit' variant='contained' color='primary' className={classes.button} disabled={loading}>
-							Login
+							Sign Up
 							{loading &&
 								<CircularProgress className={classes.progress} color='secondary' size={30}/>
 							}
 						</Button>
 						<br/>
-						<small>Don't have an account? Sign up <Link to='/signup'>here</Link> </small>
+						<small>Already have an account? Sign up <Link to='/login'>here</Link> </small>
 					</form>
 				</Grid>
 				<Grid item sm />
@@ -119,20 +141,20 @@ class login extends Component {
 	}
 }
 
-login.propTypes = {
+signup.propTypes = {
 	classes: PropTypes.object.isRequired,
-	loginUser: PropTypes.func.isRequired,
 	user: PropTypes.object.isRequired,
-	UI: PropTypes.object.isRequired
+	UI: PropTypes.object.isRequired,
+	registerUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
 	user: state.user,
 	UI: state.UI
-});
+})
 
 const mapActionsToProps = {
-	loginUser
+	registerUser
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(login))
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(signup));

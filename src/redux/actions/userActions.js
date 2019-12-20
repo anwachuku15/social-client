@@ -1,0 +1,74 @@
+import axios from "axios";
+import * as actionTypes from "./actionTypes";
+import jwtDecode from "jwt-decode";
+
+
+export const getUserData = () => (dispatch) => {
+  axios
+    .get('/user')
+    .then(res => {
+      dispatch({
+        type: actionTypes.SET_USER,
+        payload: res.data
+      })
+    })
+    .catch(err => console.log(err));
+}
+
+const setAuthorizatonHeader = (token) => {
+  const fbIdToken = `Bearer ${token}`;
+  const decodedToken = jwtDecode(token)
+  const loginDate = new Date(decodedToken.iat * 1000)
+  const expDate = new Date(decodedToken.exp * 1000)
+  
+  localStorage.setItem('fbIdToken', fbIdToken);
+  localStorage.setItem('loginDate', loginDate)
+  localStorage.setItem('expDate', expDate)
+  axios.defaults.headers.common['Authorization'] = fbIdToken;
+}
+
+export const loginUser = (userData, history) => (dispatch) => {
+  dispatch({ type: actionTypes.LOADING_UI });
+  axios
+  .post('/login', userData)
+  .then(res => {
+    setAuthorizatonHeader(res.data.token);
+    // REVIEW!!!! REVIEW!!!! REVIEW!!!!
+    dispatch(getUserData());
+    dispatch({ type: actionTypes.CLEAR_ERRORS })
+    history.push('/')
+  })
+  .catch(err => {
+    dispatch({
+      type: actionTypes.SET_ERRORS,
+      payload: err.response.data
+    })
+  })
+}
+
+export const registerUser = (userData, history) => (dispatch) => {
+  dispatch({ type: actionTypes.LOADING_UI });
+  axios
+  .post('/signup', userData)
+  .then(res => {
+    setAuthorizatonHeader(res.data.token);
+    // REVIEW!!!! REVIEW!!!! REVIEW!!!!
+    dispatch(getUserData());
+    dispatch({ type: actionTypes.CLEAR_ERRORS })
+    history.push('/')
+  })
+  .catch(err => {
+    dispatch({
+      type: actionTypes.SET_ERRORS,
+      payload: err.response.data
+    })
+  })
+}
+
+export const logoutUser = () => (dispatch) => {
+  localStorage.removeItem('fbIdToken');
+  localStorage.removeItem('loginDate');
+  localStorage.removeItem('expDate');
+  delete axios.defaults.headers.common['Authorization'];
+  dispatch({ type: actionTypes.SET_UNAUTHENTICATED });
+}

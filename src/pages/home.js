@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import Grid from '@material-ui/core/Grid';
-
 import Post from '../components/Post';
 
+// Material-UI
+import withStyles from '@material-ui/core/styles/withStyles';
+import Grid from '@material-ui/core/Grid';
+import Skeleton from '@material-ui/lab/Skeleton';
+
+const styles = (theme) => ({
+  ...theme.spreadThis
+})
 
 class home extends Component {
 	state = {
@@ -17,13 +23,21 @@ class home extends Component {
 				this.setState({
 					posts: res.data
 				})
+				console.log(res)
 			})
 			.catch(err => console.log(err));
 	}
 	render() {
+		// const { classes } = this.props;
+
 		let recentPostsMarkup = this.state.posts ? (
 			this.state.posts.map(post => <Post post={post} key={post.postId}/>)
-		) : <p>Loading...</p>
+		) : <Grid>
+					<Skeleton variant='rect' height={125}/>
+					{/* <Skeleton variant="rect" height={125} width={200}/> */}
+					{/* <Skeleton variant='text'/> */}
+				</Grid> 
+	
 		return (
 			<Grid container spacing={10}>
 				<Grid item sm={8} xs={12}>
@@ -37,4 +51,4 @@ class home extends Component {
 	}
 }
 
-export default home
+export default withStyles(styles)(home)
