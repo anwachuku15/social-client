@@ -4,6 +4,7 @@ import jwtDecode from "jwt-decode";
 
 
 export const getUserData = () => (dispatch) => {
+  dispatch({ type: actionTypes.LOADING_USER });
   axios
     .get('/user')
     .then(res => {

@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+
+// COMPONENTS
 import Post from '../components/Post';
+import Profile from '../components/Profile';
 
 // Material-UI
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -44,7 +47,7 @@ class home extends Component {
 					{recentPostsMarkup}
 				</Grid>
 				<Grid item sm={4} xs={12}>
-					<p>Profile...</p>
+					<Profile />
 				</Grid>
 			</Grid>
 		)

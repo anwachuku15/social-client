@@ -103,10 +103,10 @@ class login extends Component {
 								{errors.general}
 							</Typography>
 						)}
-						<Button type='submit' variant='contained' color='primary' className={classes.button} disabled={loading}>
+						<Button type='submit' variant='contained' color='secondary' className={classes.button} disabled={loading}>
 							Login
 							{loading &&
-								<CircularProgress className={classes.progress} color='secondary' size={30}/>
+								<CircularProgress className={classes.progress} color='primary' size={30}/>
 							}
 						</Button>
 						<br/>

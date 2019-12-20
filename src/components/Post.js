@@ -38,12 +38,12 @@ class Post extends Component {
             variant="h5" 
             component={Link}
             to={`/${userHandle}`}
-            color='primary'
+            color='secondary'
           >
             {userHandle}
           </Typography>
           <Typography variant="body2" color='textSecondary'>{dayjs(createdAt).fromNow()}</Typography>
-          <Typography variant="body1">{body}</Typography>
+          <Typography variant="body1" color=''>{body}</Typography>
         </CardContent>
       </Card>
     )
