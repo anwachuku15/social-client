@@ -10,7 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Typography } from '@material-ui/core';
 
-const styles = {
+const cardStyles = {
   card: {
     display: 'flex',
     marginBottom: 20,
@@ -50,4 +50,4 @@ class Post extends Component {
   }
 }
 
-export default withStyles(styles)(Post)
+export default withStyles(cardStyles)(Post)

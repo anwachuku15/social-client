@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 // REDUX
 import { connect } from 'react-redux';
+import { logoutUser, uploadImage } from '../redux/actions/userActions';
 
 // MATERIAL-UI
 import Paper from '@material-ui/core/Paper';
@@ -12,10 +13,15 @@ import Button from '@material-ui/core/Button';
 import Skeleton from '@material-ui/lab/Skeleton';
 import MuiLink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
 // MUI Icons
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
+// import EditIcon from '@material-ui/icons/Edit';
+import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
 
 const styles = (theme) => ({
   paper: {
@@ -65,7 +71,22 @@ const styles = (theme) => ({
   }
 })
 
+const skeletonStyle = {
+  display: 'inline-block'
+}
+
 class Profile extends Component {
+  handleImageChange = (e) => {
+    const image = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', image, image.name);
+    this.props.uploadImage(formData);
+  };
+  handleEditPicture = () => {
+    const fileInput = document.getElementById('imageInput');
+    fileInput.click();
+  }
+
   render() {
     const { 
       classes, 
@@ -83,6 +104,18 @@ class Profile extends Component {
                               <div className={classes.profile}>
                                 <div className="image-wrapper">
                                   <img src={imageUrl} alt='profile' className='profile-image' />
+                                  <input 
+                                    onChange={this.handleImageChange}
+                                    type='file' 
+                                    id='imageInput' 
+                                    hidden='hidden'
+                                  />
+                                  <Tooltip title='Edit profile picture' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
+                                    <IconButton onClick={this.handleEditPicture} className='button'>
+                                      {/* <EditIcon color='primary'/> */}
+                                      <AddAPhotoOutlinedIcon color='primary' />
+                                    </IconButton>
+                                  </Tooltip>
                                 </div>
                                 <hr/>
                                 <div className="profile-details">
@@ -130,7 +163,22 @@ class Profile extends Component {
                             </Paper>
                           ) 
                         ) : 
-                        (<Skeleton variant='rect' height={300}/>)
+                        (
+                          <Paper className={classes.paper}>
+                            <div className={classes.profile}>
+                              <div className="image-wrapper">
+                                  <Skeleton variant='circle' className='profile-image' style={skeletonStyle}></Skeleton>
+                                  <div className='profile-details'>
+                                    <Skeleton variant='text' height={40} width={200} style={skeletonStyle} />
+                                    <Skeleton variant='text' height={30} width={200} style={skeletonStyle} />
+                                    <Skeleton variant='text' height={35} width={160} style={skeletonStyle} />
+                                    <Skeleton variant='text' height={35} width={200} style={skeletonStyle} />
+                                    <Skeleton variant='text' height={35} width={150} style={skeletonStyle} />
+                                  </div>
+                              </div>
+                            </div>
+                          </Paper>
+                        )
       
     return profileMarkup;
   }
@@ -140,9 +188,13 @@ const mapStateToProps = (state) => ({
   user: state.user
 })
 
+const mapActionsToProps = { logoutUser, uploadImage }
+
 Profile.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  uploadImage: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(Profile));
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Profile));
