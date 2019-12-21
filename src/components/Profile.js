@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+
+// COMPONENTS
+import EditDetails from './EditDetails';
+
 // REDUX
 import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
@@ -20,8 +24,11 @@ import Zoom from '@material-ui/core/Zoom';
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
-// import EditIcon from '@material-ui/icons/Edit';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
+// import EditIcon from '@material-ui/icons/Edit';
+// import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import KeyboardReturn from '@material-ui/icons/KeyboardReturn'; 
+
 
 const styles = (theme) => ({
   paper: {
@@ -68,6 +75,9 @@ const styles = (theme) => ({
     '& a': {
       margin: '20px 10px'
     }
+  },
+  logoutbutton: {
+    float: 'right'
   }
 })
 
@@ -85,6 +95,9 @@ class Profile extends Component {
   handleEditPicture = () => {
     const fileInput = document.getElementById('imageInput');
     fileInput.click();
+  };
+  handleLogout = () => {
+    this.props.logoutUser();
   }
 
   render() {
@@ -144,6 +157,12 @@ class Profile extends Component {
                                   <CalendarToday color='secondary' />{' '}
                                   <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
                                 </div>
+                                <Tooltip title='Logout' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
+                                  <IconButton onClick={this.handleLogout} >
+                                    <KeyboardReturn color='primary'  />
+                                  </IconButton>
+                                </Tooltip>
+                                <EditDetails/>
                               </div>
                             </Paper>
                           ) : 
