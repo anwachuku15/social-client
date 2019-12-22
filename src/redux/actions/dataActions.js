@@ -74,7 +74,6 @@ export const unlikePost = (postId) => dispatch => {
         type: actionTypes.UNLIKE_POST,
         payload: res.data
       })
-      console.log('unlike')
     })
     .catch(err => console.log(err));
 }

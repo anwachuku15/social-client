@@ -44,6 +44,8 @@ export default function(state = initialState, action){
       return {
         ...state
       }
+
+
     case actionTypes.DELETE_POST:
       let index1 = state.posts.findIndex(post => post.postId === action.payload);
       state.posts.splice(index1, 1);
