@@ -12,13 +12,15 @@ export default function(state = initialState, action){
       return {
         ...state,
         loading: true
-      }
+      };
+
     case actionTypes.SET_POSTS:
       return {
         ...state,
         posts: action.payload,
         loading: false
-      }
+      };
+
     case actionTypes.LIKE_POST:
     case actionTypes.UNLIKE_POST:
       let index = state.posts.findIndex((post) => post.postId === action.payload.postId);
@@ -26,6 +28,14 @@ export default function(state = initialState, action){
       return {
         ...state
       }
+
+    case actionTypes.DELETE_POST:
+      let index1 = state.posts.findIndex(post => post.postId === action.payload);
+      state.posts.splice(index1, 1);
+      return {
+        ...state
+      };
+
     default:
       return state;
   }

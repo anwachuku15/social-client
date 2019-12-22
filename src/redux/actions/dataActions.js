@@ -18,7 +18,6 @@ export const getPosts = () => (dispatch) => {
       })
     })
 }
-
 // Like a post
 export const likePost = (postId) => dispatch => {
   axios
@@ -41,6 +40,23 @@ export const unlikePost = (postId) => dispatch => {
         type: actionTypes.UNLIKE_POST,
         payload: res.data
       })
+      console.log('unlike')
     })
     .catch(err => console.log(err));
 }
+
+export const deletePost = (postId) => dispatch => {
+  axios
+    .delete(`/post/${postId}`)
+    .then(() => {
+      dispatch({ 
+        type: actionTypes.DELETE_POST,
+        payload: postId
+      })
+      console.log('deleted post')
+    })
+    .catch(err => console.log(err))
+}
+
+
+

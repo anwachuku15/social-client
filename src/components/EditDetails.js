@@ -12,7 +12,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import Zoom from '@material-ui/core/Zoom';
+// import Zoom from '@material-ui/core/Zoom';
 // Material Icons
 import EditIcon from '@material-ui/icons/Edit'
 
@@ -69,13 +69,6 @@ class EditDetails extends Component {
     const { classes } = this.props;
     return (
       <Fragment>
-        {/* EDIT BUTTON */}
-        {/* <Tooltip title='Edit Details' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
-          <IconButton onClick={this.handleOpen} className={classes.button}>
-            <EditIcon color='primary'/>
-          </IconButton>
-        </Tooltip> */}
-
         <MyButton tip='Edit Details' onClick={this.handleOpen} btnClassName={classes.button} placement='top'>
           <EditIcon color='primary'/>
         </MyButton>
@@ -124,7 +117,7 @@ class EditDetails extends Component {
             </form>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color='primary'>
+            <Button onClick={this.handleClose} color='secondary'>
               Cancel
             </Button>
             <Button onClick={this.handleSubmit} color='primary'>
@@ -136,10 +129,6 @@ class EditDetails extends Component {
     )
   }
 }
-
-// const mapStateToProps = (state) => ({
-//   user: state.user
-// })
 
 EditDetails.propTypes = {
   editUserDetails: PropTypes.func.isRequired,

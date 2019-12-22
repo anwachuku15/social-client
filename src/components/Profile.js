@@ -123,11 +123,6 @@ class Profile extends Component {
                                     id='imageInput' 
                                     hidden='hidden'
                                   />
-                                  {/* <Tooltip title='Edit profile picture' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
-                                    <IconButton onClick={this.handleEditPicture} className='button'>
-                                      <AddAPhotoOutlinedIcon color='primary' />
-                                    </IconButton>
-                                  </Tooltip> */}
                                   <MyButton tip='Edit Profile picture' onClick={this.handleEditPicture} btnClassName='button'>
                                     <AddAPhotoOutlinedIcon color='primary'/>
                                   </MyButton>

@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 // REDUX
 import { connect } from 'react-redux';
 import { likePost, unlikePost } from '../redux/actions/dataActions';
+
+// Components
+import DeletePost from './DeletePost';
 // Material-UI
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
@@ -14,13 +17,14 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { Typography } from '@material-ui/core';
 import MyButton from '../util/MyButton';
 // Icons
-import ChatIcon from '@material-ui/icons/Chat';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import ChatIcon from '@material-ui/icons/Chat';
 
 
 const cardStyles = {
   card: {
+    position: 'relative',
     display: 'flex',
     marginBottom: 20,
   },
@@ -54,7 +58,7 @@ class Post extends Component {
     const { 
       classes, 
       post: { body, createdAt, userImage, userHandle, postId, likeCount, commentCount },
-      user: { authenticated } 
+      user: { authenticated, credentials: { handle} } 
     } = this.props;
 
     const likeButton = !authenticated ? (
@@ -75,7 +79,10 @@ class Post extends Component {
         </MyButton>
       )
     )
-
+    
+    const deleteButton = authenticated && userHandle === handle ? (
+      <DeletePost postId={postId} />
+    ) : null
     return (
       <Card className={classes.card}>
         <CardMedia image={userImage} title="Profile Image" className={classes.image}/>
@@ -90,14 +97,15 @@ class Post extends Component {
           </Typography>
           <Typography variant="body2" color='textSecondary'>{dayjs(createdAt).fromNow()}</Typography>
           <Typography variant="body1">{body}</Typography>
-          {likeButton}
-          {likeCount === 1 ? (<span>{likeCount} Like</span>) : (<span>{likeCount} Likes</span>)}
           
           <MyButton tip='comments'>
             <ChatIcon color='primary'/>
           </MyButton>
-          <span>{commentCount} Comments</span>
-
+          <span>{commentCount}</span>
+          
+          {likeButton}
+          <span>{likeCount}</span>
+          <span>{deleteButton}</span>
         </CardContent>
       </Card>
     )
@@ -108,7 +116,7 @@ Post.propTypes = {
   user: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-
+  
   likePost: PropTypes.func.isRequired,
   unlikePost: PropTypes.func.isRequired,
 }
