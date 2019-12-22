@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // REDUX
 import { connect } from 'react-redux';
 // Components
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 // MUI
 
 // Icons

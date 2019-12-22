@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 // REDUX
 import { connect } from 'react-redux';
-import { likePost, unlikePost } from '../redux/actions/dataActions';
+import { likePost, unlikePost } from '../../redux/actions/dataActions';
 // Components
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 // MUI
 // Icons
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';

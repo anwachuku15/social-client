@@ -24,7 +24,7 @@ import register from './pages/register';
 // import signup from "./pages/signup";
 
 // Components
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar';
 import AuthRoute from './util/AuthRoute';
 
 

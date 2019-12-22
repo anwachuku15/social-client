@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 // REDUX
 import { connect } from 'react-redux';
-import { createPost, clearErrors } from '../redux/actions/dataActions';
+import { createPost, clearErrors } from '../../redux/actions/dataActions';
 // COMPONENTS
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 // MUI
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';

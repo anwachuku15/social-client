@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { getPosts } from '../redux/actions/dataActions';
 
 // COMPONENTS
-import Post from '../components/Post';
-import Profile from '../components/Profile';
+import Post from '../components/post/Post';
+import Profile from '../components/profile/Profile';
 
 // Material-UI
 import withStyles from '@material-ui/core/styles/withStyles';

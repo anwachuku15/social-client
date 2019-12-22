@@ -4,10 +4,10 @@ import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 // REDUX
 import { connect } from 'react-redux';
-import { getPost } from '../redux/actions/dataActions';
+import { getPost } from '../../redux/actions/dataActions';
 
 // Components
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import LikeButton from './LikeButton';
 import CommentButton from './CommentButton';
 // MUI

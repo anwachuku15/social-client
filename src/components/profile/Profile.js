@@ -6,10 +6,10 @@ import dayjs from 'dayjs';
 
 // COMPONENTS
 import EditDetails from './EditDetails';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 // REDUX
 import { connect } from 'react-redux';
-import { logoutUser, uploadImage } from '../redux/actions/userActions';
+import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 
 // MATERIAL-UI
 import Paper from '@material-ui/core/Paper';
