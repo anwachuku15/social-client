@@ -1,17 +1,16 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
+import MyButton from '../util/MyButton';
 // REDUX
 import { connect } from 'react-redux';
 import { editUserDetails } from '../redux/actions/userActions';
 // MATERIAL-UI
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Tooltip } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Zoom from '@material-ui/core/Zoom';
 // Material Icons
@@ -71,12 +70,15 @@ class EditDetails extends Component {
     return (
       <Fragment>
         {/* EDIT BUTTON */}
-        <Tooltip title='Edit Details' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
+        {/* <Tooltip title='Edit Details' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
           <IconButton onClick={this.handleOpen} className={classes.button}>
             <EditIcon color='primary'/>
           </IconButton>
-        </Tooltip>
+        </Tooltip> */}
 
+        <MyButton tip='Edit Details' onClick={this.handleOpen} btnClassName={classes.button} placement='top'>
+          <EditIcon color='primary'/>
+        </MyButton>
         {/* POPUP FORM */}
         <Dialog
           open={this.state.open}

@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import PropTypes from 'prop-types';
+// REDUX
+import { connect } from 'react-redux';
+import { getPosts } from '../redux/actions/dataActions';
 
 // COMPONENTS
 import Post from '../components/Post';
@@ -8,39 +12,28 @@ import Profile from '../components/Profile';
 // Material-UI
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
-import Skeleton from '@material-ui/lab/Skeleton';
+// import Skeleton from '@material-ui/lab/Skeleton';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = (theme) => ({
-  ...theme.spreadThis
+	...theme.spreadThis
 })
 
 class home extends Component {
-	state = {
-		posts: null
-	}
 
 	componentDidMount(){
-		axios
-			.get('/posts')
-			.then(res => {
-				this.setState({
-					posts: res.data
-				})
-				console.log(res)
-			})
-			.catch(err => console.log(err));
+		this.props.getPosts();
 	}
 	render() {
-		// const { classes } = this.props;
+		const { classes } = this.props;
+		const { posts, loading } = this.props.data;
 
-		let recentPostsMarkup = this.state.posts ? (
-			this.state.posts.map(post => <Post post={post} key={post.postId}/>)
-		) : <Grid>
-					<Skeleton variant='rect' height={125}/>
-					{/* <Skeleton variant="rect" height={125} width={200}/> */}
-					{/* <Skeleton variant='text'/> */}
-				</Grid> 
-	
+		let recentPostsMarkup = !loading ? (
+			posts.map(post => <Post post={post} key={post.postId}/>)
+		) : 
+				<div style={{margin:'auto', maxWidth:'10px'}}>
+					<CircularProgress className={classes.progress} color='primary' />
+				</div>
 		return (
 			<Grid container spacing={10}>
 				<Grid item sm={8} xs={12}>
@@ -54,4 +47,18 @@ class home extends Component {
 	}
 }
 
-export default withStyles(styles)(home)
+home.propTypes = {
+	getPosts: PropTypes.func.isRequired,
+	data: PropTypes.object.isRequired
+}
+
+// state is basically defined in store.js
+const mapStateToProps = (state) => ({
+	data: state.data
+})
+
+const mapStateToActions = {
+	getPosts
+}
+
+export default connect(mapStateToProps, mapStateToActions)(withStyles(styles)(home))

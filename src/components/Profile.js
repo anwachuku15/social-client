@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 
 // COMPONENTS
 import EditDetails from './EditDetails';
-
+import MyButton from '../util/MyButton';
 // REDUX
 import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
@@ -25,7 +25,7 @@ import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
-// import EditIcon from '@material-ui/icons/Edit';
+import EditIcon from '@material-ui/icons/Edit';
 // import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn'; 
 
@@ -123,12 +123,14 @@ class Profile extends Component {
                                     id='imageInput' 
                                     hidden='hidden'
                                   />
-                                  <Tooltip title='Edit profile picture' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
+                                  {/* <Tooltip title='Edit profile picture' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
                                     <IconButton onClick={this.handleEditPicture} className='button'>
-                                      {/* <EditIcon color='primary'/> */}
                                       <AddAPhotoOutlinedIcon color='primary' />
                                     </IconButton>
-                                  </Tooltip>
+                                  </Tooltip> */}
+                                  <MyButton tip='Edit Profile picture' onClick={this.handleEditPicture} btnClassName='button'>
+                                    <AddAPhotoOutlinedIcon color='primary'/>
+                                  </MyButton>
                                 </div>
                                 <hr/>
                                 <div className="profile-details">
