@@ -20,15 +20,22 @@ export default function(state = initialState, action){
         posts: action.payload,
         loading: false
       };
-    
-      case actionTypes.CREATE_POST:
+  
+    case actionTypes.SET_POST:
       return {
         ...state,
-        posts: [
-          action.payload,
-          ...state.posts
-        ]
+        post: action.payload,
+        loading: false
       }
+    
+    case actionTypes.CREATE_POST:
+    return {
+      ...state,
+      posts: [
+        action.payload,
+        ...state.posts
+      ]
+    }
     
     case actionTypes.LIKE_POST:
     case actionTypes.UNLIKE_POST:

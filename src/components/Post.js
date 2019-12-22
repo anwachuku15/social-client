@@ -9,6 +9,7 @@ import { likePost, unlikePost } from '../redux/actions/dataActions';
 
 // Components
 import DeletePost from './DeletePost';
+import PostDialog from './PostDialog'
 // Material-UI
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
@@ -106,6 +107,8 @@ class Post extends Component {
           {likeButton}
           <span>{likeCount}</span>
           <span>{deleteButton}</span>
+
+          <PostDialog postId={postId} userHandle={userHandle}/>
         </CardContent>
       </Card>
     )

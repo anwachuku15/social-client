@@ -1,4 +1,4 @@
-import { SET_ERRORS, CLEAR_ERRORS, LOADING_UI } from '../actions/actionTypes';
+import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   loading: false,
@@ -7,26 +7,32 @@ const initialState = {
 
 export default function(state = initialState, action){
   switch(action.type){
-    case SET_ERRORS:
+    case actionTypes.SET_ERRORS:
       return {
         ...state,
         loading: false,
         errors: action.payload
       };
 
-    case CLEAR_ERRORS:
+    case actionTypes.CLEAR_ERRORS:
       return {
         ...state,
         loading: false,
         errors: null
       };
       
-    case LOADING_UI:
+    case actionTypes.LOADING_UI:
       return {
         ...state,
         loading: true
       };
       default:
         return state;
+    
+    case actionTypes.STOP_LOADING_UI:
+      return {
+        ...state,
+        loading: false
+      }
   }
 }

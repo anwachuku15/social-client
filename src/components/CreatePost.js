@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 // REDUX
 import { connect } from 'react-redux';
-import { createPost } from '../redux/actions/dataActions';
+import { createPost, clearErrors } from '../redux/actions/dataActions';
 // COMPONENTS
 import MyButton from '../util/MyButton';
 // MUI
@@ -48,8 +48,11 @@ class CreatePost extends Component {
       });
     }
     if(!nextProps.UI.errors && !nextProps.UI.loading){
-      this.handleClose();
-      this.setState({ body: ''});
+      this.setState({ 
+        body: '', 
+        open: false, 
+        errors: {} 
+      });
     }
   }
 
@@ -57,6 +60,7 @@ class CreatePost extends Component {
     this.setState({ open: true })
   }
   handleClose = () => {
+    this.props.clearErrors();
     this.setState({ open: false, errors: {} })
   }
   handleChange = e => {
@@ -116,6 +120,7 @@ class CreatePost extends Component {
 
 CreatePost.propTypes = {
   createPost: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   UI: PropTypes.object.isRequired
 };
 
@@ -124,7 +129,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapStateToActions = {
-  createPost
+  createPost,
+  clearErrors
 }
 
 export default connect(mapStateToProps, mapStateToActions)(withStyles(styles)(CreatePost))

@@ -19,6 +19,20 @@ export const getPosts = () => (dispatch) => {
     })
 }
 
+export const getPost = (postId) => (dispatch) => {
+  dispatch({ type: actionTypes.LOADING_UI });
+  axios
+    .get(`/post/${postId}`)
+    .then(res => {
+      dispatch({
+        type: actionTypes.SET_POST,
+        payload: res.data
+      });
+      dispatch({ type: actionTypes.STOP_LOADING_UI })
+    })
+    .catch(err => console.log(err));
+}
+
 export const createPost = (newPost) => (dispatch) => {
   dispatch({ type: actionTypes.LOADING_UI});
   axios
@@ -78,5 +92,8 @@ export const deletePost = (postId) => dispatch => {
     .catch(err => console.log(err))
 }
 
+export const clearErrors = () => dispatch => {
+  dispatch({ type: actionTypes.CLEAR_ERRORS });
+}
 
 
