@@ -18,6 +18,26 @@ export const getPosts = () => (dispatch) => {
       })
     })
 }
+
+export const createPost = (newPost) => (dispatch) => {
+  dispatch({ type: actionTypes.LOADING_UI});
+  axios
+    .post('/post', newPost)
+    .then(res => {
+      dispatch({
+        type: actionTypes.CREATE_POST,
+        payload: res.data
+      });
+      dispatch({ type: actionTypes.CLEAR_ERRORS })
+    })
+    .catch(err => {
+      dispatch({
+        type: actionTypes.SET_ERRORS,
+        payload: err.response.data
+      })
+    })
+}
+
 // Like a post
 export const likePost = (postId) => dispatch => {
   axios

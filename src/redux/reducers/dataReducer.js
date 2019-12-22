@@ -20,7 +20,16 @@ export default function(state = initialState, action){
         posts: action.payload,
         loading: false
       };
-
+    
+      case actionTypes.CREATE_POST:
+      return {
+        ...state,
+        posts: [
+          action.payload,
+          ...state.posts
+        ]
+      }
+    
     case actionTypes.LIKE_POST:
     case actionTypes.UNLIKE_POST:
       let index = state.posts.findIndex((post) => post.postId === action.payload.postId);
@@ -28,7 +37,6 @@ export default function(state = initialState, action){
       return {
         ...state
       }
-
     case actionTypes.DELETE_POST:
       let index1 = state.posts.findIndex(post => post.postId === action.payload);
       state.posts.splice(index1, 1);

@@ -70,11 +70,11 @@ class Post extends Component {
     ) : (
       !this.isLiked() ? 
       (
-        <MyButton tip='Like' placement='top' color='secondary' onClick={this.handleLike} className='button'>
+        <MyButton tip='Like' color='secondary' onClick={this.handleLike} className='button'>
             <ThumbUpOutlinedIcon color='primary'/>
         </MyButton>
       ) : (
-        <MyButton tip='Unlike' placement='top' color='secondary' onClick={this.handleUnlike} className='button'>
+        <MyButton tip='Unlike' color='secondary' onClick={this.handleUnlike} className='button'>
             <ThumbUpIcon color='primary'/>
         </MyButton>
       )
