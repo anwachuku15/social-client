@@ -38,10 +38,16 @@ export default {
     customError: {
       color: 'red',
       fontSize: '0.8rem'
+    },
+    invisibleSeparator: {
+      border: 'none',
+      margin: 4
+    },
+    visibleSeparator: {
+      width: '100%',
+      borderBottom: '1px solid rgba(0,0,0,0.1)',
+      marginBottom: 20
     }
   },
 
-  // profileTheme: {
-    
-  // }
 }

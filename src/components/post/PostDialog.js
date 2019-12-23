@@ -10,6 +10,7 @@ import { getPost } from '../../redux/actions/dataActions';
 import MyButton from '../../util/MyButton';
 import LikeButton from './LikeButton';
 import CommentButton from './CommentButton';
+import Comments from './Comments';
 // MUI
 import withStyles from '@material-ui/core/styles/withStyles';
 import Dialog from '@material-ui/core/Dialog';
@@ -24,10 +25,6 @@ import UnfoldMore from '@material-ui/icons/UnfoldMore';
 
 const styles = theme => ({
   ...theme.spreadThis,
-  invisibleSeparator: {
-    border: 'none',
-    margin: 4
-  },
   profileImage: {
     maxWidth: 200,
     height: 200,
@@ -71,7 +68,7 @@ class PostDialog extends Component {
       classes, 
       likeCount,
       commentCount,
-      post: { postId, body, createdAt, userImage, userHandle }, 
+      post: { postId, body, createdAt, userImage, userHandle, comments }, 
       UI: { loading }
     } = this.props;
 
@@ -97,7 +94,7 @@ class PostDialog extends Component {
           </Typography>
           <hr className={classes.invisibleSeparator}/>
           <Typography variant='body2' color='textSecondary'>
-            {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
+            {dayjs(createdAt).format('h:mm a · MMMM DD YYYY')}
           </Typography>
           <hr className={classes.invisibleSeparator}/>
           <Typography variant='body1'>
@@ -110,7 +107,8 @@ class PostDialog extends Component {
           <LikeButton postId={postId}/>
           <span>{likeCount}</span>
         </Grid>
-
+        {/* <hr className={classes.visibleSeparator}/> */}
+        <Comments comments={comments}/>
       </Grid>
     )
 
@@ -144,7 +142,8 @@ PostDialog.propTypes = {
   post: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired,
   likeCount: PropTypes.number.isRequired,
-  commentCount: PropTypes.number.isRequired
+  commentCount: PropTypes.number.isRequired,
+  comments: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
