@@ -1,6 +1,28 @@
 import axios from 'axios';
 import * as actionTypes from "./actionTypes";
 
+export const clearErrors = () => dispatch => {
+  dispatch({ type: actionTypes.CLEAR_ERRORS });
+}
+
+export const getUserData = (userHandle) => dispatch => {
+  dispatch({ type: actionTypes.LOADING_DATA })
+  axios
+    .get(`/user/${userHandle}`)
+    .then(res => {
+      dispatch({
+        type: actionTypes.SET_POSTS,
+        payload: res.data.posts
+      })
+    })
+    .catch(() => {
+      dispatch({
+        type: actionTypes.SET_POSTS,
+        payload: null
+      })
+    })
+}
+
 export const getPosts = () => (dispatch) => {
   dispatch({ type: actionTypes.LOADING_DATA });
   axios
@@ -42,7 +64,7 @@ export const createPost = (newPost) => (dispatch) => {
         type: actionTypes.CREATE_POST,
         payload: res.data
       });
-      dispatch({ type: actionTypes.CLEAR_ERRORS })
+      dispatch(clearErrors())
     })
     .catch(err => {
       dispatch({
@@ -61,6 +83,7 @@ export const likePost = (postId) => dispatch => {
         type: actionTypes.LIKE_POST,
         payload: res.data
       })
+      console.log(res.data)
     })
     .catch(err => console.log(err));
 }
@@ -91,8 +114,24 @@ export const deletePost = (postId) => dispatch => {
     .catch(err => console.log(err))
 }
 
-export const clearErrors = () => dispatch => {
-  dispatch({ type: actionTypes.CLEAR_ERRORS });
+export const submitComment = (postId, commentData, history) => dispatch => {
+  axios
+    .post(`/post/${postId}/comment`, commentData)
+    .then(res => {
+      dispatch({ 
+        type: actionTypes.SUBMIT_COMMENT,
+        payload: res.data
+      });
+      dispatch(getPost(postId));
+      dispatch(clearErrors());
+      console.log(res.data)
+    })
+    .catch(err => {
+      dispatch({
+        type: actionTypes.SET_ERRORS,
+        payload: err.response.data
+      })
+    })
 }
 
 

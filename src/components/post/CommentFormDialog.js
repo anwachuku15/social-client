@@ -4,13 +4,13 @@ import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 // REDUX
 import { connect } from 'react-redux';
-import { getPost, getPosts, clearErrors } from '../../redux/actions/dataActions';
+import { getPost } from '../../redux/actions/dataActions';
 
 // Components
 import MyButton from '../../util/MyButton';
 import LikeButton from './LikeButton';
 import CommentButton from './CommentButton';
-import Comments from './Comments';
+// import Comments from './Comments';
 import CommentForm from './CommentForm';
 // MUI
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -21,7 +21,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 // Icons
 import CloseIcon from '@material-ui/icons/Close';
-import UnfoldMore from '@material-ui/icons/UnfoldMore';
+import ChatIcon from '@material-ui/icons/Chat';
 
 
 const styles = theme => ({
@@ -50,50 +50,27 @@ const styles = theme => ({
   }
 })
 
-class PostDialog extends Component {
+class CommentFormDialog extends Component {
   state = {
-    open: false,
-    oldPath: '',
-    newPath: '',
-    commentCountNumber: null
+    open: false
   }
-  componentDidMount(){
-    if(this.props.openDialog){ // Passed down from route in App.js
-      this.handleOpen();
-    }
-  }
-
   // open dialog --> send req to server to get the post and set it in props
   handleOpen = () => {
-    let oldPath = window.location.pathname;
-    const { userHandle, postId } = this.props; // both passed down from Post.js
-    // const { commentCount } = this.props
-    const newPath = `/${userHandle}/post/${postId}`;
-
-    window.history.pushState(null, null, newPath) // don't pass any data, just the new path
-    if(oldPath === newPath){
-      oldPath = `/${userHandle}`;
-    }
-    this.setState({ open: true, oldPath, newPath });
+    this.setState({ open: true });
     this.props.getPost(this.props.postId);
-
-    
   }
   handleClose = () => {
-    window.history.pushState(null, null, this.state.oldPath);
-
     this.setState({ open: false });
-    this.props.clearErrors();
   }
   
   render() {
     const { 
       classes, 
       likeCount,
-      post: { postId, body, createdAt, userImage, userHandle, comments, commentCount }, 
+      commentCount,
+      post: { postId, body, createdAt, userImage, userHandle }, 
       UI: { loading }
     } = this.props;
-
 
     const dialogMarkup = loading ? (
       <div className={classes.spinnerDiv}>
@@ -111,7 +88,7 @@ class PostDialog extends Component {
             component={Link}
             color='primary'
             variant='h5'
-            to={`/${userHandle}`}
+            to={`/users/${userHandle}`}
           >
             @{userHandle}
           </Typography>
@@ -130,17 +107,15 @@ class PostDialog extends Component {
           <LikeButton postId={postId}/>
           <span>{likeCount}</span>
         </Grid>
-
-        <CommentForm postId={postId} />
-
-        <Comments comments={comments}/>
+        <CommentForm postId={postId}/>
+        {/* <Comments comments={comments}/> */}
       </Grid>
     )
 
     return (
       <Fragment>
-        <MyButton onClick={this.handleOpen} tip='Expand post' tipClassName={classes.expandButton}>
-          <UnfoldMore color='primary'/>
+        <MyButton onClick={this.handleOpen} tip='Leave a comment' >
+          <ChatIcon color='primary'/>
         </MyButton>
         <Dialog
           open={this.state.open}
@@ -160,17 +135,14 @@ class PostDialog extends Component {
   }
 }
 
-PostDialog.propTypes = {
+CommentFormDialog.propTypes = {
   getPost: PropTypes.func.isRequired,
-  getPosts: PropTypes.func,
-  clearErrors: PropTypes.func.isRequired,
   postId: PropTypes.string.isRequired,
   userHandle: PropTypes.string.isRequired,
   post: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired,
   likeCount: PropTypes.number.isRequired,
   commentCount: PropTypes.number.isRequired,
-  // comments: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -179,9 +151,7 @@ const mapStateToProps = state => ({
 })
 
 const mapActionsToProps = {
-  getPost,
-  getPosts,
-  clearErrors
+  getPost
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(PostDialog))
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(CommentFormDialog))

@@ -25,7 +25,7 @@ import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
-import EditIcon from '@material-ui/icons/Edit';
+// import EditIcon from '@material-ui/icons/Edit';
 // import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn'; 
 
@@ -129,7 +129,7 @@ class Profile extends Component {
                                 </div>
                                 <hr/>
                                 <div className="profile-details">
-                                  <MuiLink component={Link} to={`/users/${handle}`} color='secondary' variant='h5'>
+                                  <MuiLink component={Link} to={`/${handle}`} color='secondary' variant='h5'>
                                     @{handle}
                                   </MuiLink>
                                   <hr/>

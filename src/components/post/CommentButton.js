@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+// import { Link } from 'react-router-dom';
+// import PropTypes from 'prop-types';
 
 // REDUX
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 // Components
 import MyButton from '../../util/MyButton';
 // MUI

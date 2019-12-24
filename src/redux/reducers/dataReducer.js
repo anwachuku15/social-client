@@ -53,6 +53,18 @@ export default function(state = initialState, action){
         ...state
       };
 
+    case actionTypes.SUBMIT_COMMENT:
+      state.posts.comments = [action.payload, ...state.post.comments]
+      let index2 = state.posts.findIndex((post) => post.postId === action.payload.postId);
+      state.posts[index2].commentCount++;
+      console.log(state.posts[index2].commentCount);
+      return {
+        ...state,
+        post: {
+          ...state.post
+        },
+      }
+
     default:
       return state;
   }

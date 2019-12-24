@@ -47,6 +47,12 @@ export default function(state = initialState, action){
         loading: false,
         ...action.payload
       };
+    case actionTypes.MARK_NOTIFICATIONS_READ:
+      state.notifications.forEach(notification => notification.read = true);
+      return {
+        ...state
+      }
+
     default:
       return state;
   }
