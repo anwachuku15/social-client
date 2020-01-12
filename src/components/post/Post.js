@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime'
 import PropTypes from 'prop-types';
+import NoImg from '../../images/no-img.png'
 // REDUX
 import { connect } from 'react-redux';
 
@@ -14,6 +15,7 @@ import DeletePost from './DeletePost';
 import PostDialog from './PostDialog'
 // Material-UI
 import withStyles from '@material-ui/core/styles/withStyles';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -42,11 +44,10 @@ class Post extends Component {
 
   render() {
     dayjs.extend(relativeTime)
-
     const { 
       classes, 
       post: { body, createdAt, userImage, userHandle, postId, likeCount, commentCount, comments },
-      user: { authenticated, credentials: { handle} } 
+      user: { authenticated, credentials: { handle } } 
     } = this.props;
 
     
@@ -87,13 +88,15 @@ class Post extends Component {
 
 Post.propTypes = {
   user: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   openDialog: PropTypes.bool
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  data: state.data
 })
 
 

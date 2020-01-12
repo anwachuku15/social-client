@@ -14,11 +14,18 @@ const reducers = combineReducers({
   UI: uiReducer
 });
 
-const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+// Development: use REDUX_DEVTOOLS_EXTENSION
+// const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
+// const store = createStore(
+//   reducers, 
+//   initialState, 
+//   compose(applyMiddleware(...middleware), reduxDevTools))
+
+// Deployment
 const store = createStore(
   reducers, 
   initialState, 
-  compose(applyMiddleware(...middleware), reduxDevTools))
+  compose(applyMiddleware(...middleware)))
 
 export default store;

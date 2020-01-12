@@ -24,6 +24,9 @@ import Navbar from './components/layout/Navbar';
 import AuthRoute from './util/AuthRoute';
 import appTheme from './util/appTheme';
 
+// for npm run build
+axios.defaults.baseURL = 'https://us-central1-social-3be8a.cloudfunctions.net/api';
+
 const theme = createMuiTheme(appTheme);
 
 

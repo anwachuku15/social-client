@@ -18,6 +18,10 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ChatIcon from '@material-ui/icons/Chat';
 
+
+
+const ITEM_HEIGHT = 48;
+
 class Notifications extends Component {
   // anchorEl documentation
   // https://material-ui.com/components/menus/
@@ -98,7 +102,7 @@ class Notifications extends Component {
         })
       ) : ( // If user has no notifications
         <MenuItem onClick={this.handleClose}>
-          You have no notifications yet
+          You have no notifications.... yet
         </MenuItem>
       )
 
@@ -118,6 +122,12 @@ class Notifications extends Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
           onEntered={this.onMenuOpened}
+          style={{top:'25px', left:'20px'}}
+          PaperProps={{
+            style: {
+              maxHeight: ITEM_HEIGHT * 4.5
+            },
+          }}
         >
           {notificationsMarkup}
         </Menu>
