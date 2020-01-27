@@ -23,6 +23,7 @@ import userProfile from './pages/userProfile';
 import Navbar from './components/layout/Navbar';
 import AuthRoute from './util/AuthRoute';
 import appTheme from './util/appTheme';
+import { Container } from '@material-ui/core';
 
 // for npm run build
 axios.defaults.baseURL = 'https://us-central1-social-3be8a.cloudfunctions.net/api';
@@ -58,6 +59,7 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <Router>
             <Navbar />
+            {/* <Container> */}
             <div className="container">
               <Switch>
                 <Route exact path='/' component={home}/>
@@ -69,6 +71,7 @@ class App extends Component {
                 <Route exact path='/:handle/post/:postId' component={userProfile} />
               </Switch>
             </div>
+            {/* </Container> */}
           </Router>
         </MuiThemeProvider>
       </Provider>

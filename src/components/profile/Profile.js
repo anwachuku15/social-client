@@ -32,7 +32,7 @@ import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 
 const styles = (theme) => ({
   paper: {
-    padding: 20
+    padding: 20,
   },
   profile: {
     '& .image-wrapper': {
@@ -113,7 +113,7 @@ class Profile extends Component {
     let profileMarkup = !loading ? 
                         (authenticated ? 
                           ( // Show Profile
-                            <Paper className={classes.paper}>
+                            <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px'}} >
                               <div className={classes.profile}>
                                 <div className="image-wrapper">
                                   <img src={imageUrl} alt='profile' className='profile-image' />
@@ -144,12 +144,15 @@ class Profile extends Component {
                                   <hr/>
                                   {website && (
                                     <Fragment>
-                                      <LinkIcon color='secondary' />
-                                      <a href={website} target='_blank' rel='noopener noreferrer' color='primary'>
-                                        {' '}{website}
-                                      </a>
+                                      <Tooltip title={website} placement='left' color='secondary' TransitionComponent={Zoom} arrow>
+                                        {/* <LinkIcon color='secondary' /> */}
+                                        <a href={website} target='_blank' rel='noopener noreferrer' color='primary'>
+                                          {/* {' '}{website} */}<LinkIcon color='secondary' />
+                                        </a>
+                                      </Tooltip>
                                       <hr/>
                                     </Fragment>
+                                    
                                   )}
                                   <CalendarToday color='secondary' />{' '}
                                   <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>

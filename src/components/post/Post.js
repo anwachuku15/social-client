@@ -21,7 +21,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Typography } from '@material-ui/core';
 // import MyButton from '../../util/MyButton';
-
+import Avatar from '@material-ui/core/Avatar';
 
 
 
@@ -29,13 +29,22 @@ const cardStyles = {
   card: {
     position: 'relative',
     display: 'flex',
-    marginBottom: 20,
+    marginBottom: 10,
+    paddingLeft: 15,
+    // backgroundColor: 'rgb(192, 240, 248)'
   },
   image: {
     minWidth: 200,
+    borderRadius: '50%'
+  },
+  avatar: {
+    width: 75,
+    height: 75,
+    marginTop: 25
   },
   content: {
     padding: 25,
+    paddingLeft: 15,
     objectFit: 'cover'
   }
 }
@@ -57,7 +66,7 @@ class Post extends Component {
     ) : null
     return (
       <Card className={classes.card}>
-        <CardMedia image={userImage} title="Profile Image" className={classes.image}/>
+        <Avatar alt={userHandle} src={userImage} className={classes.avatar} />
         <CardContent className={classes.content}>
           <Typography 
             variant="h5" 
@@ -67,7 +76,7 @@ class Post extends Component {
           >
             {userHandle}
           </Typography>
-          <Typography variant="body2" color='textSecondary'>{dayjs(createdAt).fromNow()}</Typography>
+          <Typography variant="body2" color='textSecondary' display='inline'> · {dayjs(createdAt).fromNow()}</Typography>
           <Typography variant="body1">{body}</Typography>
           
           {/* <CommentButton /> */}

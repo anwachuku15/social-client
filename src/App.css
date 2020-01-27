@@ -6,7 +6,8 @@ body{
   /* background: #ECE9E6;
   background: -webkit-linear-gradient(to left, #FFFFFF, #ECE9E6);
   background: linear-gradient(to left, #FFFFFF, rgb(255, 209, 209)); */
-  background: rgb(255, 255, 255);
+  /* background: rgb(192, 240, 248); */
+  background: rgb(65, 73, 75);
 
 }
 .container {
@@ -25,3 +26,22 @@ body{
 a {
   text-decoration: none;
 }
+
+/* #root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.flex-col-scroll {
+  flex-grow: 1;
+  overflow: auto;
+  min-height: 100%;
+} */

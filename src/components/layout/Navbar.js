@@ -8,6 +8,7 @@ import Notifications from './Notifications';
 // REDUX
 import { connect } from 'react-redux';
 // Material-UI
+import withStyles  from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -15,12 +16,25 @@ import Button from '@material-ui/core/Button';
 // import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 
+const styles = (theme) => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+  drawer: {
+    width: 315,
+    flexShrink: 0,
+  },
+});
 
 export class Navbar extends Component {
   render() {
+    const { classes } = this.props;
     const { authenticated } = this.props
     return (
-      <AppBar color='secondary'>
+      <AppBar color='secondary' position="fixed" className={classes.appBar}>
         <Toolbar className='nav-container'>
           {authenticated ? (
             <Fragment> 
@@ -57,4 +71,4 @@ const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated
 })
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps)(withStyles(styles)(Navbar));
