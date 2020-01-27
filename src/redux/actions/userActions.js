@@ -104,3 +104,31 @@ export const markNotificationsRead = (notificationIds) => dispatch => {
     })
     .catch(err => console.log(err));
 };
+
+// Follow a user
+export const followUser = (handle) => dispatch => {
+  axios
+    .get(`/follow/${handle}`)
+    .then(res => {
+      dispatch({
+        type: actionTypes.FOLLOW_USER,
+        payload: res.data
+      })
+      console.log(res.data)
+    })
+    .catch(err => console.log(err))
+}
+
+// Unfollow a user
+export const unfollowUser = (handle) => dispatch => {
+  axios
+    .get(`/unfollow/${handle}`)
+    .then(res => {
+      dispatch({
+        type: actionTypes.UNFOLLOW_USER,
+        payload: res.data
+      })
+      console.log(res.data)
+    })
+    .catch(err => console.log(err))
+}

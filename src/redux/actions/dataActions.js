@@ -74,7 +74,6 @@ export const createPost = (newPost) => (dispatch) => {
     })
 }
 
-// Like a post
 export const likePost = (postId) => dispatch => {
   axios
     .get(`/post/${postId}/like`)
@@ -88,7 +87,6 @@ export const likePost = (postId) => dispatch => {
     .catch(err => console.log(err));
 }
 
-// Unlike a post
 export const unlikePost = (postId) => dispatch => {
   axios
     .get(`/post/${postId}/unlike`)

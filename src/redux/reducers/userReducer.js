@@ -5,7 +5,9 @@ const initialState = {
   loading: false,
   credentials: {},
   likes: [],
-  notifications: []
+  notifications: [],
+  following: [],
+  followers: []
 }
 
 export default function(state = initialState, action){
@@ -53,6 +55,8 @@ export default function(state = initialState, action){
       return {
         ...state
       }
+    
+    // TODO: FOLLOW/UNFOLLOW REDUCERS
 
     default:
       return state;
