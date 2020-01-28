@@ -15,6 +15,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // ICONS
 import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit'
 import CloseIcon from '@material-ui/icons/Close';
 
 const styles = (theme) => ({
@@ -30,6 +31,9 @@ const styles = (theme) => ({
     position: 'absolute',
     // left: '90%',
     // top: '10%'
+  },
+  button: {
+    float: 'right'
   }
 })
 
@@ -76,8 +80,8 @@ class CreatePost extends Component {
     
     return (
       <Fragment>
-        <MyButton onClick={this.handleOpen} tip='Make a Post'>
-          <AddIcon />
+        <MyButton onClick={this.handleOpen} tip='Make a Post' btnClassName={classes.button}>
+          <EditIcon color='primary'/>
         </MyButton>
         <Dialog
           open={this.state.open}

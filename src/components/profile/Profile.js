@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 // COMPONENTS
+import CreatePost from '../post/CreatePost';
 import EditDetails from './EditDetails';
 import MyButton from '../../util/MyButton';
 // REDUX
@@ -12,6 +13,7 @@ import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 
 // MATERIAL-UI
+import EditIcon from '@material-ui/icons/Edit'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -164,6 +166,7 @@ class Profile extends Component {
                                   </IconButton>
                                 </Tooltip>
                                 <EditDetails/>
+                                <CreatePost />
                               </div>
                             </Paper>
                           ) : 

@@ -15,11 +15,12 @@ import Button from '@material-ui/core/Button';
 // import Zoom from '@material-ui/core/Zoom';
 // Material Icons
 import EditIcon from '@material-ui/icons/Edit'
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 const styles = (theme) => ({
   ...theme.spreadThis,
   button: {
-    float: 'right'
+    // float: 'right'
   }
 });
 
@@ -70,7 +71,7 @@ class EditDetails extends Component {
     return (
       <Fragment>
         <MyButton tip='Edit Details' onClick={this.handleOpen} btnClassName={classes.button} placement='top'>
-          <EditIcon color='primary'/>
+          <MoreHorizIcon color='primary'/>
         </MyButton>
         {/* POPUP FORM */}
         <Dialog
