@@ -51,17 +51,17 @@ export class Navbar extends Component {
 
               <Notifications color='primary'/>
 
-              <Link to='https://github.com/anwachuku15/social-client'>
+              <a href="https://github.com/anwachuku15/social-client">
                 <MyButton tip='Front-End Source Code'>
                   <DeveloperModeIcon color='secondary' />
                 </MyButton>
-              </Link>
+              </a>
               
-              <Link to='https://github.com/anwachuku15/social'>
+              <a href="https://github.com/anwachuku15/social">
                 <MyButton tip='Back-End Source Code'>
                   <GitHubIcon color='primary' />
                 </MyButton>
-              </Link>
+              </a>
 
             </Fragment>
           ) : (
@@ -69,6 +69,18 @@ export class Navbar extends Component {
               <Button color="inherit" component={Link} to='/'>Home</Button>
               <Button color="inherit" component={Link} to='/login'>Login</Button>
               <Button color="inherit" component={Link} to='/signup'>Sign Up</Button>
+
+              <a href="https://github.com/anwachuku15/social-client" target='_blank'>
+                <MyButton tip='Front-End Source Code'>
+                  <DeveloperModeIcon color='secondary' />
+                </MyButton>
+              </a>
+              
+              <a href="https://github.com/anwachuku15/social" target='_blank'>
+                <MyButton tip='Back-End Source Code'>
+                  <GitHubIcon color='primary' />
+                </MyButton>
+                </a>
             </Fragment>
           )}
         </Toolbar>
