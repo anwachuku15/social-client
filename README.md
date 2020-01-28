@@ -1,5 +1,6 @@
-THIS IS THE FRONT-END SOURCE CODE
 BACK-END SOURCE: https://github.com/anwachuku15/social
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
