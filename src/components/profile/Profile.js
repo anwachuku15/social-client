@@ -25,6 +25,7 @@ import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
+import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 // import EditIcon from '@material-ui/icons/Edit';
 // import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn'; 
