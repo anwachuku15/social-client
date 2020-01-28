@@ -16,8 +16,8 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import home from "./pages/home";
 import login from "./pages/login";
 import register from './pages/register';
-// import signin from "./pages/signin";
-// import signup from "./pages/signup";
+import signin from "./pages/signin";
+import signup from "./pages/signup";
 import userProfile from './pages/userProfile';
 // Components
 import Navbar from './components/layout/Navbar';

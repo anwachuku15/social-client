@@ -35,8 +35,6 @@ const styles = (theme) => ({
 	}
 })
 
-// const config = ConfigGenerator({ addOnsIncluded: true });
-// config.setPrimarySidebarToInset();
 
 class home extends Component {
 	
@@ -45,7 +43,6 @@ class home extends Component {
 		this.props.getPosts();
 	}
 	render() {
-		// const isActive = useMediaQuery()
 
 		const { classes } = this.props;
 		const { posts, loading } = this.props.data;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-
+import BackImg from '../images/whitebackgroundimg.jpg';
 // Material-UI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -17,6 +17,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 function Copyright() {
@@ -86,7 +87,7 @@ export default function SignIn() {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" style={{background:`url(${BackImg})`, borderRadius: '50px'}}>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -141,12 +142,15 @@ export default function SignIn() {
             className={classes.submit}
           >
             Sign In
+            {loading &&
+              <CircularProgress className={classes.progress} color='secondary' size={30}/>
+            }
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              {/* <Link href="#" variant="body2">
                 Forgot password?
-              </Link>
+              </Link> */}
             </Grid>
             <Grid item>
               <Link href="/signup" variant="body2">
@@ -156,7 +160,7 @@ export default function SignIn() {
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
+      <Box mt={8} style={{paddingBottom:'20px'}}>
         <Copyright />
       </Box>
     </Container>

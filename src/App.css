@@ -7,7 +7,7 @@ body{
   background: -webkit-linear-gradient(to left, #FFFFFF, #ECE9E6);
   background: linear-gradient(to left, #FFFFFF, rgb(255, 209, 209)); */
   /* background: rgb(192, 240, 248); */
-  background: rgb(65, 73, 75);
+  background: rgb(112, 127, 131);
 
 }
 .container {
@@ -27,12 +27,13 @@ a {
   text-decoration: none;
 }
 
-/* #root {
-  height: 100%;
+#root {
+  /* height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
+  background: rgb(112, 127, 131)
 }
-
+/*
 .flex-section {
   flex-grow: 1;
   display: flex;

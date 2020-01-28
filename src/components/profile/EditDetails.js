@@ -20,7 +20,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 const styles = (theme) => ({
   ...theme.spreadThis,
   button: {
-    float: 'right'
+    float: 'center'
   }
 });
 

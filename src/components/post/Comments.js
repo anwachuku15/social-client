@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
+import Avatar from '@material-ui/core/Avatar';
 
 
 const styles = theme => ({
@@ -16,6 +16,11 @@ const styles = theme => ({
     height: 100,
     objectFit: 'cover',
     borderRadius: '50%'
+  },
+  avatar: {
+    width: 75,
+    height: 75,
+    marginTop: 25
   },
   commentData: {
     marginLeft: 20
@@ -36,6 +41,7 @@ export class Comments extends Component {
                 <Grid container>
                   <Grid item sm={2}>
                     <img src={userImage} alt='comment' className={classes.commentImage}/>
+                    {/* <Avatar alt={userHandle} src={userImage} className={classes.avatar} /> */}
                   </Grid>
                   <Grid item sm={9}>
                     <div className={classes.commentData}>

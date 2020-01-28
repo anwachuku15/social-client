@@ -1,23 +1,43 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import CoolIcon from '../images/coolblue.png';
-import { Link } from 'react-router-dom';
+import BackImg from '../images/whitebackgroundimg.jpg';
+// import { Link } from 'react-router-dom';
 
 // REDUX
 import { connect } from 'react-redux';
 import { registerUser } from '../redux/actions/userActions';
 
 // Material-UI
+import Link from '@material-ui/core/Link';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import Container from '@material-ui/core/Container';
 
 const styles = (theme) => ({
-  ...theme.spreadThis
+	...theme.spreadThis,
+	paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+	},
+	form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submitButton: {
+		margin: theme.spacing(3, 0, 2),
+	},
+	avatar: {
+    margin: theme.spacing(1),
+		maxWidth: '40px'
+  },
 })
 
 
@@ -64,14 +84,17 @@ class signup extends Component {
 		const { classes, UI: { loading } } = this.props;
 		const { errors } = this.state;
 		return (
-			<Grid container className={classes.form}>
+			<Container component="main" maxWidth="xs" style={{background:`url(${BackImg})`, borderRadius: '50px'}}>
+			{/* <Grid container className={classes.form} maxWidth='xs'>
 				<Grid item sm />
-				<Grid item sm>
-					<img src={CoolIcon} alt='cool' className={classes.image} />
-					<Typography variant="h2" className={classes.pageTitle}>
+				<Grid item sm> */}
+				<CssBaseline />
+				<div className={classes.paper}>
+					<img src={CoolIcon} alt='cool' className={classes.avatar} />
+					<Typography component='h1' variant="h5" >
 						Sign Up
 					</Typography>
-					<form onSubmit={this.handleSubmit} noValidate>
+					<form onSubmit={this.handleSubmit} className={classes.form} noValidate>
 						<TextField 
 							id='handle' 
 							name='handle' 
@@ -83,6 +106,8 @@ class signup extends Component {
 							value={this.state.handle} 
 							onChange={this.handleChange} 
 							fullWidth 
+							variant="outlined"
+							autoFocus
 						/>
 						<TextField 
 							id='email' 
@@ -95,6 +120,7 @@ class signup extends Component {
 							value={this.state.email} 
 							onChange={this.handleChange} 
 							fullWidth 
+							variant="outlined"
 						/>
 						<TextField 
 							id='password' 
@@ -107,6 +133,7 @@ class signup extends Component {
 							value={this.state.password} 
 							onChange={this.handleChange} 
 							fullWidth 
+							variant="outlined"
 						/>
             <TextField 
 							id='confirmPassword' 
@@ -119,24 +146,43 @@ class signup extends Component {
 							value={this.state.confirmPassword} 
 							onChange={this.handleChange} 
 							fullWidth 
+							variant="outlined"
 						/>
 						{errors.general && (
-							<Typography variant='body2' className={classes.customError}>
+							<Typography variant='body2' >
 								{errors.general}
 							</Typography>
 						)}
-						<Button type='submit' variant='contained' color='primary' className={classes.button} disabled={loading}>
+						<Button 
+							type='submit' 
+							variant='contained' 
+							color='primary' 
+							fullWidth
+							// className={classes.button} 
+							className={classes.submitButton} 
+							disabled={loading}
+						>
 							Sign Up
 							{loading &&
 								<CircularProgress className={classes.progress} color='secondary' size={30}/>
 							}
 						</Button>
 						<br/>
-						<small>Already have an account? Sign up <Link to='/login'>here</Link> </small>
+						<Grid container>
+							<Grid item xs/>
+							<Grid item style={{paddingBottom: '20px'}}>
+								<Link href='/login' variant='body2'>
+									Already have an account? Login here
+								</Link>
+							</Grid>
+						</Grid>
+						
 					</form>
-				</Grid>
+				{/* </Grid>
 				<Grid item sm />
-			</Grid>
+			</Grid> */}
+			</div>
+			</Container>
 		)
 	}
 }

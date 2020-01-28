@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 // Material-UI
 import Avatar from '@material-ui/core/Avatar';
@@ -66,10 +67,15 @@ export default function SignUp() {
     setLoading(true);
     const userData = {email, password};
     axios
-      .post('/login', userData)
+      .post('/signup', userData)
       .then(res => {
         console.log(res.data);
-        console.log(userData)
+        console.log(userData);
+        localStorage.setItem('fbIdToken', `Bearer ${res.data.token}`);
+        const loginTime = new Date(jwtDecode(res.data.token).iat * 1000);
+        const expDate = new Date(jwtDecode(res.data.token).exp * 1000);
+        localStorage.setItem('loginTime', loginTime);
+        localStorage.setItem('expDate', expDate);
         setLoading(false);
         history.push('/');
       })
@@ -89,7 +95,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -136,12 +142,6 @@ export default function SignUp() {
                 type="password"
                 id="confirmPassword"
                 autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>
           </Grid>

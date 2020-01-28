@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+import BackImg from '../../images/whitebackgroundimg.jpg';
 
 // COMPONENTS
 import CreatePost from '../post/CreatePost';
@@ -13,7 +14,7 @@ import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 
 // MATERIAL-UI
-import EditIcon from '@material-ui/icons/Edit'
+import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -116,7 +117,7 @@ class Profile extends Component {
     let profileMarkup = !loading ? 
                         (authenticated ? 
                           ( // Show Profile
-                            <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px'}} >
+                            <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px', backgroundImage:`url(${BackImg})`}} >
                               <div className={classes.profile}>
                                 <div className="image-wrapper">
                                   <img src={imageUrl} alt='profile' className='profile-image' />
@@ -159,19 +160,21 @@ class Profile extends Component {
                                   <CalendarToday color='secondary' />{' '}
                                   <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
                                 </div>
-                                <Tooltip title='Logout' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
-                                  <IconButton onClick={this.handleLogout} >
-                                    <KeyboardReturn color='primary'  />
-                                  </IconButton>
-                                </Tooltip>
-                                <CreatePost />
-                                <EditDetails/>
+                                {/* <Grid> */}
+                                  <Tooltip title='Logout' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
+                                    <IconButton onClick={this.handleLogout} >
+                                      <KeyboardReturn color='primary'  />
+                                    </IconButton>
+                                  </Tooltip>
+                                  <CreatePost />
+                                  <EditDetails />
+                                {/* </Grid> */}
                                 
                               </div>
                             </Paper>
                           ) : 
                           ( // No Profile Found
-                            <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px'}} >
+                            <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px', backgroundImage:`url(${BackImg})`}} >
                               <Typography variant='body2' align='center'>
                                 No profile found, please login
                               </Typography>
