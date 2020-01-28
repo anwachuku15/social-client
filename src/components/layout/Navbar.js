@@ -15,6 +15,8 @@ import Button from '@material-ui/core/Button';
 // Icons
 // import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
+import DeveloperModeIcon from '@material-ui/icons/DeveloperMode';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 const styles = (theme) => ({
   root: {
@@ -48,7 +50,19 @@ export class Navbar extends Component {
               </Link>
 
               <Notifications color='primary'/>
+
+              <Link to='https://github.com/anwachuku15/social-client'>
+                <MyButton tip='Front-End Source Code'>
+                  <DeveloperModeIcon color='secondary' />
+                </MyButton>
+              </Link>
               
+              <Link to='https://github.com/anwachuku15/social'>
+                <MyButton tip='Back-End Source Code'>
+                  <GitHubIcon color='primary' />
+                </MyButton>
+              </Link>
+
             </Fragment>
           ) : (
             <Fragment>

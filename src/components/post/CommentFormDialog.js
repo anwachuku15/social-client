@@ -10,7 +10,7 @@ import { getPost } from '../../redux/actions/dataActions';
 import MyButton from '../../util/MyButton';
 import LikeButton from './LikeButton';
 import CommentButton from './CommentButton';
-// import Comments from './Comments';
+import Comments from './Comments';
 import CommentForm from './CommentForm';
 // MUI
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -68,7 +68,7 @@ class CommentFormDialog extends Component {
       classes, 
       likeCount,
       commentCount,
-      post: { postId, body, createdAt, userImage, userHandle }, 
+      post: { postId, body, createdAt, userImage, userHandle, comments }, 
       UI: { loading }
     } = this.props;
 
@@ -108,7 +108,7 @@ class CommentFormDialog extends Component {
           <span>{likeCount}</span>
         </Grid>
         <CommentForm postId={postId}/>
-        {/* <Comments comments={comments}/> */}
+        <Comments comments={comments}/>
       </Grid>
     )
 
