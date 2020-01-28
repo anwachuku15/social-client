@@ -148,9 +148,8 @@ class Profile extends Component {
                                   {website && (
                                     <Fragment>
                                       <Tooltip title={website} placement='left' color='secondary' TransitionComponent={Zoom} arrow>
-                                        {/* <LinkIcon color='secondary' /> */}
                                         <a href={website} target='_blank' rel='noopener noreferrer' color='primary'>
-                                          {/* {' '}{website} */}<LinkIcon color='secondary' />
+                                          <LinkIcon color='secondary' />
                                         </a>
                                       </Tooltip>
                                       <hr/>
@@ -165,8 +164,9 @@ class Profile extends Component {
                                     <KeyboardReturn color='primary'  />
                                   </IconButton>
                                 </Tooltip>
-                                <EditDetails/>
                                 <CreatePost />
+                                <EditDetails/>
+                                
                               </div>
                             </Paper>
                           ) : 

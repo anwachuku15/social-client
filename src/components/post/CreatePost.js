@@ -8,6 +8,7 @@ import { createPost, clearErrors } from '../../redux/actions/dataActions';
 import MyButton from '../../util/MyButton';
 // MUI
 import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -80,9 +81,17 @@ class CreatePost extends Component {
     
     return (
       <Fragment>
-        <MyButton onClick={this.handleOpen} tip='Make a Post' btnClassName={classes.button}>
-          <EditIcon color='primary'/>
-        </MyButton>
+        <Tooltip arrow>
+          <MyButton 
+            onClick={this.handleOpen} 
+            tip='Make a Post' 
+            btnClassName={classes.button} 
+            placement='top' 
+            color='secondary'
+          >
+            <EditIcon color='primary'/>
+          </MyButton>
+        </Tooltip>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
