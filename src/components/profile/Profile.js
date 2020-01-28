@@ -171,7 +171,7 @@ class Profile extends Component {
                             </Paper>
                           ) : 
                           ( // No Profile Found
-                            <Paper className={classes.paper}>
+                            <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px'}} >
                               <Typography variant='body2' align='center'>
                                 No profile found, please login
                               </Typography>
