@@ -106,87 +106,96 @@ class Profile extends Component {
     const { 
       classes, 
       user: { 
-        credentials: { handle, createdAt, imageUrl, bio, website, location },
+        credentials: { handle, createdAt, imageUrl, bio, website, location, followers, following },
         loading,
         authenticated
       }
     } = this.props;
     
     let profileMarkup = !loading ? 
-                        (authenticated ? 
-                          ( // Show Profile
-                            <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px', backgroundImage:`url(${BackImg})`}} >
-                              <div className={classes.profile}>
-                                <div className="image-wrapper">
-                                  <img src={imageUrl} alt='profile' className='profile-image' />
-                                  <input 
-                                    onChange={this.handleImageChange}
-                                    type='file' 
-                                    id='imageInput' 
-                                    hidden='hidden'
-                                  />
-                                  <MyButton tip='Edit Profile picture' onClick={this.handleEditPicture} btnClassName='button'>
-                                    <AddAPhotoOutlinedIcon color='primary'/>
-                                  </MyButton>
-                                </div>
-                                <hr/>
-                                <div className="profile-details">
-                                  <MuiLink component={Link} to={`/${handle}`} color='secondary' variant='h5'>
-                                    @{handle}
-                                  </MuiLink>
+                          (authenticated ? 
+                            ( // Show Profile
+                              <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px', backgroundImage:`url(${BackImg})`}} >
+                                <div className={classes.profile}>
+                                  <div className="image-wrapper">
+                                    <img src={imageUrl} alt='profile' className='profile-image' />
+                                    <input 
+                                      onChange={this.handleImageChange}
+                                      type='file' 
+                                      id='imageInput' 
+                                      hidden='hidden'
+                                    />
+                                    <MyButton tip='Edit Profile picture' onClick={this.handleEditPicture} btnClassName='button'>
+                                      <AddAPhotoOutlinedIcon color='primary'/>
+                                    </MyButton>
+                                  </div>
                                   <hr/>
-                                  {bio && <Typography variant='body2'>{bio}</Typography>}
-                                  <hr/>
-                                  {location && (
+                                  <div className="profile-details">
+                                    <MuiLink component={Link} to={`/${handle}`} color='secondary' variant='h5'>
+                                      @{handle}
+                                    </MuiLink>
+                                    <hr/>
                                     <Fragment>
-                                      <LocationOn color='secondary' />
-                                      <span>{location}</span>
-                                    </Fragment>
-                                  )}
-                                  <hr/>
-                                  {website && (
+                                      <Typography variant='subtitle2' display='inline'>{following} </Typography>
+                                      <Typography variant='subtitle2' color='textSecondary' display='inline'>Following </Typography>
+                                    </Fragment>|
                                     <Fragment>
-                                      <Tooltip title={website} placement='left' color='secondary' TransitionComponent={Zoom} arrow>
-                                        <a href={website} target='_blank' rel='noopener noreferrer' color='primary'>
-                                          <LinkIcon color='secondary' />
-                                        </a>
-                                      </Tooltip>
-                                      <hr/>
+                                      <Typography variant='subtitle2' display='inline'> {followers} </Typography>
+                                      <Typography variant='subtitle2' color='textSecondary' display='inline'>Followers</Typography>
                                     </Fragment>
-                                    
-                                  )}
-                                  <CalendarToday color='secondary' />{' '}
-                                  <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
+                                    <hr/>
+                                    {bio && <Typography variant='body2'>{bio}</Typography>}
+                                    <hr/>
+                                    {location && (
+                                      <Fragment>
+                                        <LocationOn color='secondary' />
+                                        <span>{location}</span>
+                                      </Fragment>
+                                    )}
+                                    <hr/>
+                                    {website && (
+                                      <Fragment>
+                                        <Tooltip title={website} placement='left' color='secondary' TransitionComponent={Zoom} arrow>
+                                          <a href={website} target='_blank' rel='noopener noreferrer' color='primary'>
+                                            <LinkIcon color='secondary' />
+                                          </a>
+                                        </Tooltip>
+                                        <hr/>
+                                      </Fragment>
+                                      
+                                    )}
+                                    <CalendarToday color='secondary' />{' '}
+                                    <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
+                                  </div>
+                                  {/* <Grid> */}
+                                    <Tooltip title='Logout' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
+                                      <IconButton onClick={this.handleLogout} >
+                                        <KeyboardReturn color='primary'  />
+                                      </IconButton>
+                                    </Tooltip>
+                                    <CreatePost />
+                                    <EditDetails />
+                                  {/* </Grid> */}
+                                  
                                 </div>
-                                {/* <Grid> */}
-                                  <Tooltip title='Logout' placement='top' color='secondary' TransitionComponent={Zoom} arrow>
-                                    <IconButton onClick={this.handleLogout} >
-                                      <KeyboardReturn color='primary'  />
-                                    </IconButton>
-                                  </Tooltip>
-                                  <CreatePost />
-                                  <EditDetails />
-                                {/* </Grid> */}
-                                
-                              </div>
-                            </Paper>
+                              </Paper>
+                            ) : 
+                            ( // No Profile Found
+                              <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px', backgroundImage:`url(${BackImg})`}} >
+                                <Typography variant='body2' align='center'>
+                                  No profile found, please login
+                                </Typography>
+                                <div className={classes.buttons}>
+                                  <Button variant='contained' color='secondary' component={Link} to='/login'>
+                                    Login
+                                  </Button>
+                                  <Button variant='contained' color='primary' component={Link} to='/signup'>
+                                    Sign Up
+                                  </Button>
+                                </div>
+                              </Paper>
+                            ) 
                           ) : 
-                          ( // No Profile Found
-                            <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px', backgroundImage:`url(${BackImg})`}} >
-                              <Typography variant='body2' align='center'>
-                                No profile found, please login
-                              </Typography>
-                              <div className={classes.buttons}>
-                                <Button variant='contained' color='secondary' component={Link} to='/login'>
-                                  Login
-                                </Button>
-                                <Button variant='contained' color='primary' component={Link} to='/signup'>
-                                  Sign Up
-                                </Button>
-                              </div>
-                            </Paper>
-                          ) 
-                        ) : 
                         (
                           <Paper className={classes.paper}>
                             <div className={classes.profile}>

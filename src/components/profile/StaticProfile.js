@@ -47,7 +47,11 @@ const styles = (theme) => ({
 });
 
 const StaticProfile = (props) => {
-  const { classes, profile: { handle, createdAt, imageUrl, bio, website, location }} = props;
+  const { 
+    classes, 
+    profile: { handle, createdAt, imageUrl, bio, website, location, following, followers },
+    user: authenticated 
+  } = props;
 
   return (
     <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px', backgroundImage:`url(${BackImg})`}} >
@@ -60,6 +64,15 @@ const StaticProfile = (props) => {
           <MuiLink component={Link} to={`/users/${handle}`} color='secondary' variant='h5'>
             @{handle}
           </MuiLink>
+          <hr/>
+          <Fragment>
+            <Typography variant='subtitle2' display='inline'>{following} </Typography>
+            <Typography variant='subtitle2' color='textSecondary' display='inline'>Following </Typography>
+          </Fragment>|
+          <Fragment>
+            <Typography variant='subtitle2' display='inline'> {followers} </Typography>
+            <Typography variant='subtitle2' color='textSecondary' display='inline'>Followers</Typography>
+          </Fragment>
           <hr/>
           {bio && <Typography variant='body2'>{bio}</Typography>}
           <hr/>
@@ -89,7 +102,9 @@ const StaticProfile = (props) => {
 
 StaticProfile.propTypes = {
   profile: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+
+  user: PropTypes.object.isRequired
 }
 
 

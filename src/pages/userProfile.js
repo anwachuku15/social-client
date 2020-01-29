@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { getUserData } from '../redux/actions/dataActions'
 // COMPONENTS
 import StaticProfile from '../components/profile/StaticProfile'
+import Profile from '../components/profile/Profile'
 // MATERIAL-UI
 import withStyles from '@material-ui/core/styles/withStyles'
 import Container from '@material-ui/core/Container';
@@ -21,6 +22,7 @@ const styles = (theme) => ({
 class userProfile extends Component {
   state = {
     profile: null,
+    userHandle: null,
     postIdParam: null
   }
   componentDidMount(){
@@ -37,16 +39,19 @@ class userProfile extends Component {
       .get(`/user/${handle}`)
       .then(res => {
         this.setState({
-          profile: res.data.user
+          profile: res.data.user,
+          userHandle: res.data.user.handle
         })
+        console.log(res.data.user)
       })
       .catch(err => console.log(err));
   }
   render() {
     const { classes } = this.props;
+    const { user: { credentials: {handle} } } = this.props;
     const { posts, loading } = this.props.data;
     const { postIdParam } = this.state;
-
+    
 
     const postsMarkup = loading ? ( // If the page is loading, show loading circle
       <div style={{margin:'auto', maxWidth:'10px'}}>
@@ -71,7 +76,13 @@ class userProfile extends Component {
 
         <Grid container spacing={8}>
           <Grid item sm={4} xs={12} style={{paddingBottom:'3px'}}>
-            {this.state.profile && <StaticProfile profile={this.state.profile}/>}
+            {this.state.profile && 
+              this.state.userHandle !== handle ? (
+                <StaticProfile profile={this.state.profile}/>
+              ) : (
+                <Profile />
+              )
+            }
           </Grid>
           <Grid item sm={8} xs={12}>
             {postsMarkup}
@@ -90,7 +101,8 @@ userProfile.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  data: state.data
+  data: state.data,
+  user: state.user
 })
 
 const mapStateToActions = {
