@@ -148,7 +148,13 @@ class PostDialog extends Component {
           fullWidth
           maxWidth='sm'
         >
-          <MyButton tip='Close' onClick={this.handleClose} tipClassName={classes.closeButton} color='secondary'>
+          <MyButton 
+            tip='Close' 
+            onClick={this.handleClose} 
+            tipClassName={classes.closeButton} 
+            color='secondary'
+            style={{padding:20}}
+          >
             <CloseIcon/>
           </MyButton>
           <DialogContent className={classes.dialogContent}>

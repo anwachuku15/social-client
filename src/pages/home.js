@@ -10,14 +10,10 @@ import Post from '../components/post/Post';
 import Profile from '../components/profile/Profile';
 
 // Material-UI
-import { useMediaQuery } from '@material-ui/core'
 import Container from '@material-ui/core/Container';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Divider from '@material-ui/core/Divider';
-import { Box } from '@material-ui/core';
-import Drawer from '@material-ui/core/Drawer';
 
 const styles = (theme) => ({
 	...theme.spreadThis,
@@ -58,11 +54,11 @@ class home extends Component {
 			<Container maxWidth='lg'>
 
 				<Grid container spacing={8} >
-					<Grid item lg={4} md={4} sm={4} xs={12} style={{paddingBottom:'3px'}}>
+					<Grid item sm={4} xs={12} style={{paddingBottom:'3px'}}>
 						<Profile />
 					</Grid>
 
-						<Grid item lg={8} md={8} sm={8} xs={12} >
+						<Grid item sm={8} xs={12} >
 							{recentPostsMarkup}
 						</Grid>
 				</Grid>

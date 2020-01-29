@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
+import BackImg from '../../images/whitebackgroundimg.jpg';
 // MATERIAL-UI
 import withStyles from '@material-ui/core/styles/withStyles'
 import MuiLink from '@material-ui/core/Link'
@@ -49,7 +50,7 @@ const StaticProfile = (props) => {
   const { classes, profile: { handle, createdAt, imageUrl, bio, website, location }} = props;
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} style={{position: 'sticky', top: 70, minWidth:'160px', backgroundImage:`url(${BackImg})`}} >
       <div className={classes.profile}>
         <div className="image-wrapper">
           <img src={imageUrl} alt='profile' className='profile-image' />

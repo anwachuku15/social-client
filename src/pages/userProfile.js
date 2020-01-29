@@ -9,6 +9,7 @@ import { getUserData } from '../redux/actions/dataActions'
 import StaticProfile from '../components/profile/StaticProfile'
 // MATERIAL-UI
 import withStyles from '@material-ui/core/styles/withStyles'
+import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
@@ -54,11 +55,11 @@ class userProfile extends Component {
     ) : posts === null ? ( // If the userProfile has no posts, show 'No posts yet'
       <p>No posts yet...</p>
     ) : !postIdParam ? ( // If the route doesn't include a postId, show all posts
-      posts.map(post => <Post key={post.postId} post={post} />)
+      posts.map(post => <Post key={post.postId} post={post} style={{minWidth:'175px'}}/>)
     ) : (
       posts.map(post => {
         if(post.postId !== postIdParam) { // If the post's postId doesn't equal the postId in the route, return normal post
-          return <Post key={post.postId} post={post} />
+          return <Post key={post.postId} post={post} style={{minWidth:'175px'}}/>
         } else { // If the post's postId is included in the route, return the post's open dialog (prop drilling)
           return <Post key={post.postId} post={post} openDialog/> //openDialog passed to PostDialog component
         }
@@ -66,14 +67,18 @@ class userProfile extends Component {
       })
     )
     return (
-      <Grid container spacing={10}>
-				<Grid item sm={8} xs={12}>
-					{postsMarkup}
-				</Grid>
-				<Grid item sm={4} xs={12}>
-					{this.state.profile && <StaticProfile profile={this.state.profile}/>}
-				</Grid>
-			</Grid>
+      <Container maxWidth='lg'>
+
+        <Grid container spacing={8}>
+          <Grid item sm={4} xs={12} style={{paddingBottom:'3px'}}>
+            {this.state.profile && <StaticProfile profile={this.state.profile}/>}
+          </Grid>
+          <Grid item sm={8} xs={12}>
+            {postsMarkup}
+          </Grid>
+        </Grid>
+        
+      </Container>
     )
   }
 }

@@ -8,7 +8,6 @@ import Notifications from './Notifications';
 // REDUX
 import { connect } from 'react-redux';
 // Material-UI
-import MuiLink from '@material-ui/core/Link';
 import withStyles  from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -31,9 +30,11 @@ const styles = (theme) => ({
     flexShrink: 0,
   },
   avatar: {
-    margin: theme.spacing(1),
-    maxWidth: '40px',
-    borderRadius: '50%'
+    // margin: theme.spacing(1),
+    width: 24,
+    height: 24,
+    borderRadius: '50%',
+    objectFit: 'cover'
   },
 });
 
@@ -70,15 +71,15 @@ export class Navbar extends Component {
                 </MyButton>
               </Link>
               
-              <MuiLink component={Link} to={`/${handle}`} color='white' variant='h5'>
-              <img src={imageUrl} alt={handle} className={classes.avatar} />
-              </MuiLink>
-              
               <CreatePost />
 
               <Notifications color='primary'/>
 
-              
+              <a href={`/${handle}`}>
+                <MyButton tip='Profile'>
+                  <img src={imageUrl} alt={handle} className={classes.avatar} />
+                </MyButton>
+              </a>
 
             </Fragment>
           ) : (
@@ -87,13 +88,13 @@ export class Navbar extends Component {
               <Button color="inherit" component={Link} to='/login'>Login</Button>
               <Button color="inherit" component={Link} to='/signup'>Sign Up</Button>
 
-              <a href="https://github.com/anwachuku15/social-client" target='_blank'>
+              <a href="https://github.com/anwachuku15/social-client" target='_blank' rel='noreferrer noopener'>
                 <MyButton tip='Front-End Source Code'>
                   <DeveloperModeIcon color='secondary' />
                 </MyButton>
               </a>
               
-              <a href="https://github.com/anwachuku15/social" target='_blank'>
+              <a href="https://github.com/anwachuku15/social" target='_blank' rel='noreferrer noopener'>
                 <MyButton tip='Back-End Source Code'>
                   <GitHubIcon color='primary' />
                 </MyButton>

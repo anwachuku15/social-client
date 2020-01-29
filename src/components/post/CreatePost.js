@@ -85,8 +85,7 @@ class CreatePost extends Component {
             onClick={this.handleOpen} 
             tip='Make a Post' 
             btnClassName={classes.button} 
-            placement='top' 
-            color='secondary'
+            placement='top'
           >
             <EditIcon color='primary'/>
           </MyButton>

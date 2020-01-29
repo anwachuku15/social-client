@@ -14,7 +14,6 @@ import { connect } from 'react-redux';
 import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 
 // MATERIAL-UI
-import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -28,7 +27,6 @@ import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
-import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
 // import EditIcon from '@material-ui/icons/Edit';
 // import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn'; 
