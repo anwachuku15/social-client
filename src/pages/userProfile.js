@@ -35,6 +35,7 @@ class userProfile extends Component {
     }
 
     this.props.getUserData(handle);
+    
     axios
       .get(`/user/${handle}`)
       .then(res => {

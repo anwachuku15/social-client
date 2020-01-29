@@ -132,3 +132,4 @@ export const unfollowUser = (handle) => dispatch => {
     })
     .catch(err => console.log(err))
 }
+

@@ -7,6 +7,7 @@ export const MARK_NOTIFICATIONS_READ = 'MARK_NOTIFICATIONS_READ';
 export const FOLLOW_USER = 'FOLLOW_USER';
 export const UNFOLLOW_USER = 'UNFOLLOW_USER';
 
+
 // UI Reducer Types
 export const SET_ERRORS = 'SET_ERRORS';
 export const LOADING_UI = 'LOADING_UI';
@@ -22,3 +23,4 @@ export const LIKE_POST = 'LIKE_POST';
 export const UNLIKE_POST = 'UNLIKE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
+export const SET_FOLLOWERS = 'SET_FOLLOWERS'

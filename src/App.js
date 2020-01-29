@@ -19,6 +19,7 @@ import register from './pages/register';
 import signin from "./pages/signin";
 import signup from "./pages/signup";
 import userProfile from './pages/userProfile';
+import userFollowers from './pages/userFollowers'
 // Components
 import Navbar from './components/layout/Navbar';
 import AuthRoute from './util/AuthRoute';
@@ -69,6 +70,7 @@ class App extends Component {
                 {/* <AuthRoute exact path='/signup' component={signup} /> */}
                 <Route exact path='/:handle' component={userProfile} />
                 <Route exact path='/:handle/post/:postId' component={userProfile} />
+                <Route exact path='/:handle/followers' component={userFollowers} />
               </Switch>
             </div>
             {/* </Container> */}

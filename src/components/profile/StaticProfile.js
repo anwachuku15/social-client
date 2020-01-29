@@ -65,14 +65,14 @@ const StaticProfile = (props) => {
             @{handle}
           </MuiLink>
           <hr/>
-          <Fragment>
-            <Typography variant='subtitle2' display='inline'>{following} </Typography>
-            <Typography variant='subtitle2' color='textSecondary' display='inline'>Following </Typography>
-          </Fragment>|
-          <Fragment>
-            <Typography variant='subtitle2' display='inline'> {followers} </Typography>
-            <Typography variant='subtitle2' color='textSecondary' display='inline'>Followers</Typography>
-          </Fragment>
+          <MuiLink component={Link} to={`/${handle}/followers`}>
+            <Typography variant='subtitle2' display='inline'>{followers} </Typography>
+            <Typography variant='subtitle2' color='textSecondary' display='inline'>Followers </Typography>
+          </MuiLink>|
+          <MuiLink component={Link} to={`/${handle}/following`}>
+            <Typography variant='subtitle2' display='inline'> {following} </Typography>
+            <Typography variant='subtitle2' color='textSecondary' display='inline'>Following</Typography>
+          </MuiLink>
           <hr/>
           {bio && <Typography variant='body2'>{bio}</Typography>}
           <hr/>

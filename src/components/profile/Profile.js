@@ -135,14 +135,14 @@ class Profile extends Component {
                                       @{handle}
                                     </MuiLink>
                                     <hr/>
-                                    <Fragment>
-                                      <Typography variant='subtitle2' display='inline'>{following} </Typography>
-                                      <Typography variant='subtitle2' color='textSecondary' display='inline'>Following </Typography>
-                                    </Fragment>|
-                                    <Fragment>
-                                      <Typography variant='subtitle2' display='inline'> {followers} </Typography>
+                                    <MuiLink component={Link} to={`/${handle}/followers`}>
+                                      <Typography variant='subtitle2' display='inline'>{followers}</Typography>&nbsp;
                                       <Typography variant='subtitle2' color='textSecondary' display='inline'>Followers</Typography>
-                                    </Fragment>
+                                    </MuiLink>&nbsp;|&nbsp;
+                                    <MuiLink component={Link} to={`/${handle}/following`}>
+                                      <Typography variant='subtitle2' display='inline'>{following}</Typography>&nbsp;
+                                      <Typography variant='subtitle2' color='textSecondary' display='inline'>Following</Typography>
+                                    </MuiLink>
                                     <hr/>
                                     {bio && <Typography variant='body2'>{bio}</Typography>}
                                     <hr/>

@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   posts: [],
   post: {},
+  followers: [],
   loading: false
 };
 
@@ -12,6 +13,13 @@ export default function(state = initialState, action){
       return {
         ...state,
         loading: true
+      };
+
+    case actionTypes.SET_FOLLOWERS:
+      return {
+        ...state,
+        loading: false,
+        followers: action.payload
       };
 
     case actionTypes.SET_POSTS:
@@ -63,7 +71,9 @@ export default function(state = initialState, action){
         post: {
           ...state.post
         },
-      }
+      };
+
+    
 
     default:
       return state;

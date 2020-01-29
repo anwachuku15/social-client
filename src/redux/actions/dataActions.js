@@ -23,6 +23,20 @@ export const getUserData = (userHandle) => dispatch => {
     })
 }
 
+export const getFollowerData = (userHandle) => dispatch => {
+  dispatch({ type: actionTypes.LOADING_DATA })
+  axios
+    .get(`/${userHandle}/followers`)
+    .then(res => {
+      dispatch({
+        type: actionTypes.SET_FOLLOWERS,
+        payload: res.data.followers
+      })
+      console.log(res.data.followers)
+    })
+    .catch(err => console.log(err))
+}
+
 export const getPosts = () => (dispatch) => {
   dispatch({ type: actionTypes.LOADING_DATA });
   axios
