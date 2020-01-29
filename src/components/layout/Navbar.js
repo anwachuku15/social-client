@@ -8,6 +8,7 @@ import Notifications from './Notifications';
 // REDUX
 import { connect } from 'react-redux';
 // Material-UI
+import MuiLink from '@material-ui/core/Link';
 import withStyles  from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -29,27 +30,27 @@ const styles = (theme) => ({
     width: 315,
     flexShrink: 0,
   },
+  avatar: {
+    margin: theme.spacing(1),
+    maxWidth: '40px',
+    borderRadius: '50%'
+  },
 });
 
 export class Navbar extends Component {
   render() {
-    const { classes } = this.props;
+    const { 
+      classes,
+      user: {
+        credentials: { handle, imageUrl }
+      }
+    } = this.props;
     const { authenticated } = this.props
     return (
       <AppBar color='secondary' position="fixed" className={classes.appBar}>
         <Toolbar className='nav-container'>
           {authenticated ? (
             <Fragment> 
-              
-              <CreatePost />
-
-              <Link to='/'>
-                <MyButton tip='Home'>
-                  <HomeIcon color='primary' />
-                </MyButton>
-              </Link>
-
-              <Notifications color='primary'/>
 
               <a href="https://github.com/anwachuku15/social-client">
                 <MyButton tip='Front-End Source Code'>
@@ -62,6 +63,22 @@ export class Navbar extends Component {
                   <GitHubIcon color='primary' />
                 </MyButton>
               </a>
+
+              <Link to='/'>
+                <MyButton tip='Home'>
+                  <HomeIcon color='primary' />
+                </MyButton>
+              </Link>
+              
+              <MuiLink component={Link} to={`/${handle}`} color='white' variant='h5'>
+              <img src={imageUrl} alt={handle} className={classes.avatar} />
+              </MuiLink>
+              
+              <CreatePost />
+
+              <Notifications color='primary'/>
+
+              
 
             </Fragment>
           ) : (
@@ -90,11 +107,13 @@ export class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  authenticated: PropTypes.bool.isRequired
+  authenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  authenticated: state.user.authenticated
+  authenticated: state.user.authenticated,
+  user: state.user
 })
 
 export default connect(mapStateToProps)(withStyles(styles)(Navbar));

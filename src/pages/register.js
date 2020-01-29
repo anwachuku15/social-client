@@ -171,7 +171,7 @@ class signup extends Component {
 						<Grid container>
 							<Grid item xs/>
 							<Grid item style={{paddingBottom: '20px'}}>
-								<Link href='/login' variant='body2'>
+								<Link href='/login' variant='body2' color='secondary'>
 									Already have an account? Login here
 								</Link>
 							</Grid>

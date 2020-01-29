@@ -31,7 +31,6 @@ const cardStyles = {
     display: 'flex',
     marginBottom: 10,
     paddingLeft: 15,
-    // backgroundColor: 'rgb(192, 240, 248)'
   },
   image: {
     minWidth: 200,
@@ -66,7 +65,9 @@ class Post extends Component {
     ) : null
     return (
       <Card className={classes.card}>
-        <Avatar alt={userHandle} src={userImage} className={classes.avatar} />
+        <Link to={`/${userHandle}`}>
+          <Avatar alt={userHandle} src={userImage} className={classes.avatar} />
+        </Link>
         <CardContent className={classes.content}>
           <Typography 
             variant="h5" 

@@ -27,7 +27,8 @@ import ChatIcon from '@material-ui/icons/Chat';
 const styles = theme => ({
   ...theme.spreadThis,
   profileImage: {
-    maxWidth: 200,
+    width: 200,
+    // minWidth: 200,
     height: 200,
     borderRadius: '50%',
     objectFit: 'cover'
@@ -80,7 +81,7 @@ class CommentFormDialog extends Component {
       <Grid container spacing={1}>
 
         <Grid item sm={5}>
-          <img src={userImage} alt="Profile" className={classes.profileImage}/>
+          <Link to={`/${userHandle}`}><img src={userImage} alt="Profile" className={classes.profileImage}/></Link>
         </Grid>
 
         <Grid item sm={7}>
@@ -88,7 +89,7 @@ class CommentFormDialog extends Component {
             component={Link}
             color='primary'
             variant='h5'
-            to={`/users/${userHandle}`}
+            to={`/${userHandle}`}
           >
             @{userHandle}
           </Typography>

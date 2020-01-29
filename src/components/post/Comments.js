@@ -12,7 +12,8 @@ import Avatar from '@material-ui/core/Avatar';
 const styles = theme => ({
   ...theme.spreadThis,
   commentImage: {
-    maxWidth: '100%',
+    // maxWidth: '100%',
+    minWidth: 100,
     height: 100,
     objectFit: 'cover',
     borderRadius: '50%'
@@ -40,7 +41,7 @@ export class Comments extends Component {
               <Grid item sm={12}>
                 <Grid container>
                   <Grid item sm={2}>
-                    <img src={userImage} alt='comment' className={classes.commentImage}/>
+                    <Link to={`/${userHandle}`}><img src={userImage} alt='comment' className={classes.commentImage}/></Link>
                     {/* <Avatar alt={userHandle} src={userImage} className={classes.avatar} /> */}
                   </Grid>
                   <Grid item sm={9}>
@@ -48,7 +49,7 @@ export class Comments extends Component {
                       <Typography
                         variant='h5'
                         component={Link}
-                        to={`/users/${userHandle}`}
+                        to={`/${userHandle}`}
                         color='primary'
                       >
                         {userHandle}
