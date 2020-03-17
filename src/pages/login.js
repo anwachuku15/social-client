@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import CoolIcon from '../images/coolblue.png';
 import BackImg from '../images/whitebackgroundimg.jpg';
 // import { Link } from 'react-router-dom';
-
 // Redux
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/actions/userActions';
@@ -62,9 +61,6 @@ class login extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		// this.setState({
-		// 	loading: true
-		// });
 		const userData = {
 			email: this.state.email,
 			password: this.state.password

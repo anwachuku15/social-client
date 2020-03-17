@@ -4,16 +4,21 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import BackImg from '../../images/whitebackgroundimg.jpg';
-
+// FIREBASE
+import firebase from 'firebase';
+import config from '../../util/config';
+// import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 // COMPONENTS
 import CreatePost from '../post/CreatePost';
 import EditDetails from './EditDetails';
 import MyButton from '../../util/MyButton';
 // REDUX
 import { connect } from 'react-redux';
-import { logoutUser, uploadImage } from '../../redux/actions/userActions';
+import { facebookLoginUser, logoutUser, uploadImage } from '../../redux/actions/userActions';
 
+import {FacebookLoginButton} from 'react-social-login-buttons';
 // MATERIAL-UI
+// import FacebookIcon from '@material-ui/icons/Facebook';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -31,6 +36,7 @@ import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
 // import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn'; 
 
+firebase.initializeApp(config);
 
 const styles = (theme) => ({
   paper: {
@@ -87,6 +93,7 @@ const skeletonStyle = {
   display: 'inline-block'
 }
 
+
 class Profile extends Component {
   handleImageChange = (e) => {
     const image = e.target.files[0];
@@ -101,6 +108,11 @@ class Profile extends Component {
   handleLogout = () => {
     this.props.logoutUser();
   }
+  
+  handleFacebook = () => {
+    this.props.facebookLoginUser();
+  }
+
 
   render() {
     const { 
@@ -193,6 +205,13 @@ class Profile extends Component {
                                     Sign Up
                                   </Button>
                                 </div>
+                                <div>
+                                  {/* <Button variant='contained' color='primary' onClick={this.handleFacebook}>
+                                    <FacebookIcon/>
+                                    Facebook
+                                  </Button> */}
+                                  <FacebookLoginButton onClick={this.handleFacebook}/>
+                                </div>
                               </Paper>
                             ) 
                           ) : 
@@ -221,9 +240,10 @@ const mapStateToProps = (state) => ({
   user: state.user
 })
 
-const mapActionsToProps = { logoutUser, uploadImage }
+const mapActionsToProps = { facebookLoginUser, logoutUser, uploadImage }
 
 Profile.propTypes = {
+  facebookLoginUser: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
   uploadImage: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,

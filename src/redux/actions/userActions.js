@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
 import jwtDecode from "jwt-decode";
-
+import firebase from 'firebase'
 
 export const getUserData = () => (dispatch) => {
   dispatch({ type: actionTypes.LOADING_USER });
@@ -16,7 +16,7 @@ export const getUserData = () => (dispatch) => {
     .catch(err => console.log(err));
 }
 
-const setAuthorizatonHeader = (token) => {
+export const setAuthorizatonHeader = (token) => {
   const fbIdToken = `Bearer ${token}`;
   const decodedToken = jwtDecode(token)
   const loginDate = new Date(decodedToken.iat * 1000)
@@ -45,6 +45,30 @@ export const loginUser = (userData, history) => (dispatch) => {
       payload: err.response.data
     })
   })
+}
+
+export const facebookLoginUser = (history) => (dispatch) => {
+  dispatch({ type: actionTypes.LOADING_UI })
+  var facebook = new firebase.auth.FacebookAuthProvider();
+  facebook.setCustomParameters({
+    'display': 'popup'
+  })
+
+  firebase
+    .auth()
+    .signInWithPopup(facebook)
+    .then(res => {
+      return res.user.getIdToken()
+    })
+    .then(token => {
+      setAuthorizatonHeader(token);
+      dispatch(getUserData());
+      dispatch({ type: actionTypes.CLEAR_ERRORS })
+      history.push('/')
+    })
+    .catch(err => {
+      console.log(err)
+    })
 }
 
 export const registerUser = (userData, history) => (dispatch) => {

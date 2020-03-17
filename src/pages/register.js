@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import CoolIcon from '../images/coolblue.png';
 import BackImg from '../images/whitebackgroundimg.jpg';
 // import { Link } from 'react-router-dom';
-
 // REDUX
 import { connect } from 'react-redux';
 import { registerUser } from '../redux/actions/userActions';
