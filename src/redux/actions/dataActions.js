@@ -121,7 +121,6 @@ export const deletePost = (postId) => dispatch => {
         type: actionTypes.DELETE_POST,
         payload: postId
       })
-      console.log('deleted post')
     })
     .catch(err => console.log(err))
 }

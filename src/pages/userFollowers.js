@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 // REDUX
@@ -11,15 +11,15 @@ import StaticProfile from '../components/profile/StaticProfile'
 import Profile from '../components/profile/Profile'
 // MUI
 import withStyles from '@material-ui/core/styles/withStyles'
-import { Container, Typography } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 // import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+// import Card from '@material-ui/core/Card';
+// import CardContent from '@material-ui/core/CardContent';
 // import CardMedia from '@material-ui/core/CardMedia';
 // import MyButton from '../../util/MyButton';
-import Avatar from '@material-ui/core/Avatar';
+// import Avatar from '@material-ui/core/Avatar';
 
 const styles = (theme) => ({
   ...theme.spreadThis,

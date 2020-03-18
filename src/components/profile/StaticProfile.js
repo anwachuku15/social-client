@@ -50,7 +50,7 @@ const StaticProfile = (props) => {
   const { 
     classes, 
     profile: { handle, createdAt, imageUrl, bio, website, location, following, followers },
-    user: authenticated 
+    // user: authenticated 
   } = props;
 
   return (

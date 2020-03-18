@@ -8,8 +8,9 @@ import { getPosts } from '../redux/actions/dataActions';
 // COMPONENTS
 import Post from '../components/post/Post';
 import Profile from '../components/profile/Profile';
-
+import PostForm from '../components/post/PostForm';
 // Material-UI
+import Slide from '@material-ui/core/Slide';
 import Container from '@material-ui/core/Container';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
@@ -58,9 +59,11 @@ class home extends Component {
 						<Profile />
 					</Grid>
 
-						<Grid item sm={8} xs={12} >
-							{recentPostsMarkup}
-						</Grid>
+					<Grid item sm={8} xs={12} >
+						<PostForm/>
+						<br/>
+						{recentPostsMarkup}
+					</Grid>
 				</Grid>
 
 			</Container>

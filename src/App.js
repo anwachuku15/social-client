@@ -16,15 +16,15 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import home from "./pages/home";
 import login from "./pages/login";
 import register from './pages/register';
-import signin from "./pages/signin";
-import signup from "./pages/signup";
+// import signin from "./pages/signin";
+// import signup from "./pages/signup";
 import userProfile from './pages/userProfile';
 import userFollowers from './pages/userFollowers'
 // Components
 import Navbar from './components/layout/Navbar';
 import AuthRoute from './util/AuthRoute';
 import appTheme from './util/appTheme';
-import { Container } from '@material-ui/core';
+// import { Container } from '@material-ui/core';
 
 // for npm run build
 axios.defaults.baseURL = 'https://us-central1-social-3be8a.cloudfunctions.net/api';

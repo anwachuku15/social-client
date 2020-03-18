@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import BackImg from '../../images/whitebackgroundimg.jpg';
 // FIREBASE
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import config from '../../util/config';
 // import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 // COMPONENTS
@@ -16,7 +16,7 @@ import MyButton from '../../util/MyButton';
 import { connect } from 'react-redux';
 import { facebookLoginUser, logoutUser, uploadImage } from '../../redux/actions/userActions';
 
-import {FacebookLoginButton} from 'react-social-login-buttons';
+import { FacebookLoginButton } from 'react-social-login-buttons';
 // MATERIAL-UI
 // import FacebookIcon from '@material-ui/icons/Facebook';
 import Paper from '@material-ui/core/Paper';
@@ -111,6 +111,14 @@ class Profile extends Component {
   
   handleFacebook = () => {
     this.props.facebookLoginUser();
+  }
+
+  handleTwitter = () => {
+    this.props.twitterLoginUser();
+  }
+
+  handleGithub = () => {
+    this.props.githubLoginUser();
   }
 
 
@@ -240,7 +248,11 @@ const mapStateToProps = (state) => ({
   user: state.user
 })
 
-const mapActionsToProps = { facebookLoginUser, logoutUser, uploadImage }
+const mapActionsToProps = { 
+  facebookLoginUser, 
+  logoutUser, 
+  uploadImage 
+}
 
 Profile.propTypes = {
   facebookLoginUser: PropTypes.func.isRequired,

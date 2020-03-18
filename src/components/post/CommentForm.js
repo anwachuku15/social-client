@@ -58,7 +58,13 @@ export class CommentForm extends Component {
             fullWidth
             className={classes.textField}
           />
-          <Button type='submit' variant='contained' color='primary' className={classes.submitButton} disabled={!(this.state.body).trim().length}>
+          <Button 
+            type='submit' 
+            variant='contained' 
+            color='primary' 
+            className={classes.submitButton} 
+            // disabled={!(this.state.body).trim().length}
+          >
             Submit
           </Button>
         </form>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
 import jwtDecode from "jwt-decode";
-import firebase from 'firebase'
+import firebase /*, { auth }*/ from 'firebase'
 
 export const getUserData = () => (dispatch) => {
   dispatch({ type: actionTypes.LOADING_USER });
@@ -58,6 +58,7 @@ export const facebookLoginUser = (history) => (dispatch) => {
     .auth()
     .signInWithPopup(facebook)
     .then(res => {
+      console.log(res.user)
       return res.user.getIdToken()
     })
     .then(token => {
@@ -70,6 +71,68 @@ export const facebookLoginUser = (history) => (dispatch) => {
       console.log(err)
     })
 }
+
+// export const twitterLoginUser = (history) => (dispatch) => {
+//   dispatch({ type: actionTypes.LOADING_UI })
+//   var twitter = new firebase.auth.TwitterAuthProvider();
+//   twitter.setCustomParameters({
+//     'display': 'popup'
+//   })
+
+//   firebase
+//     .auth()
+//     .signInWithPopup(twitter)
+//     .then(res => {
+//       console.log(res.user)
+//       return res.user.getIdToken()
+//     })
+//     .then(token => {
+//       setAuthorizatonHeader(token);
+//       dispatch(getUserData());
+//       dispatch({ type: actionTypes.CLEAR_ERRORS })
+//       history.push('/')
+//     })
+//     .catch(err => {
+//       console.log(err)
+//     })
+// }
+
+// export const githubLoginUser = (history) => (dispatch) => {
+//   dispatch({ type: actionTypes.LOADING_UI })
+//   var github = new firebase.auth.GithubAuthProvider();
+//   github.setCustomParameters({
+//     'display': 'popup'
+//   })
+
+//   firebase
+//     .auth()
+//     .signInWithPopup(github)
+//     .then(res => {
+//       console.log(res.user)
+//       return res.user.getIdToken()
+//     })
+//     .then(token => {
+//       setAuthorizatonHeader(token);
+//       dispatch(getUserData());
+//       dispatch({ type: actionTypes.CLEAR_ERRORS })
+//       history.push('/')
+//     })
+//     .catch(err => {
+//       if (err.code === 'auth/account-exists-with-different-credential'){
+//         var pendingCred = err.credential
+//         var email = err.email
+//         auth().fetchSignInMethodsForEmail(email).then((methods) => {
+//           if (methods[0] === 'password'){
+//             var password = promptUserForPassword();
+//             auth().signInWithEmailAndPassword(email, password)
+//               .then(user => {
+//                 return user.
+//               })
+//           }
+//         })
+//       }
+//     })
+// }
 
 export const registerUser = (userData, history) => (dispatch) => {
   dispatch({ type: actionTypes.LOADING_UI });

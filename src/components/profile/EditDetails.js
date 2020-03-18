@@ -14,7 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 // import Zoom from '@material-ui/core/Zoom';
 // Material Icons
-import EditIcon from '@material-ui/icons/Edit'
+// import EditIcon from '@material-ui/icons/Edit'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 const styles = (theme) => ({

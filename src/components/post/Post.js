@@ -17,7 +17,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 // import CircularProgress from '@material-ui/core/CircularProgress';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+// import CardMedia from '@material-ui/core/CardMedia';
 import { Typography } from '@material-ui/core';
 // import MyButton from '../../util/MyButton';
 import Avatar from '@material-ui/core/Avatar';
