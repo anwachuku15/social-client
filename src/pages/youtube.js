@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import jwtDecode from 'jwt-decode';
+
+import youtubeAPIkey from '../util/youtubeAPIkey'
+
 
 import Post from '../components/post/Post'
 // REDUX
@@ -19,7 +21,7 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import VideoDetail from '../components/youtube/VideoDetail';
+import VideoDetail from '../components/youtube/Video';
 
 const styles = (theme) => ({
 	...theme.spreadThis
@@ -44,7 +46,7 @@ class youtube extends Component {
   handleSubmit = async (searchQuery) => {
     const res = await axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
-        key: 'AIzaSyATWyxu32Jup7ZcaTkZfQTasI_7POpbbzM',
+        key: {youtubeAPIkey},
         part:'snippet',
         q: searchQuery,
         maxResults:20

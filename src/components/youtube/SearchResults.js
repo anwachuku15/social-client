@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
 import YoutubeSearchedForIcon from '@material-ui/icons/YoutubeSearchedFor';
 import { Container, TextField } from '@material-ui/core';
-import Video from './VideoDetail';
+import Video from './Video';
 
 const styles = (theme) => ({
 	...theme.spreadThis

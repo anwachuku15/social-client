@@ -25,3 +25,4 @@ yarn-error.log*
 theme.json
 red-gold-theme.json
 src/util/config.js
+src/util/youtubeAPIkey.js

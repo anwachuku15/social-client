@@ -3,7 +3,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 
 
-const VideoDetail = ({video}) => {
+const Video = ({video}) => {
     const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
     console.log(typeof(video));
     
@@ -21,4 +21,4 @@ const VideoDetail = ({video}) => {
     )
 }
 
-export default VideoDetail;
+export default Video;
