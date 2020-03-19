@@ -18,6 +18,7 @@ const styles = (theme) => ({
 	...theme.spreadThis
 })
 
+const token = localStorage.fbIdToken;
 
 class userProfile extends Component {
   state = {
@@ -29,6 +30,10 @@ class userProfile extends Component {
     const handle = this.props.match.params.handle;
     const postId = this.props.match.params.postId;
 
+    if(token){
+      console.log(axios.defaults.headers.common)
+    }
+    
     // if the postId is included in the route ('/:handle/post/:postId')
     if(postId) {
       this.setState({ postIdParam: postId })

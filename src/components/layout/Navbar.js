@@ -5,6 +5,7 @@ import MyButton from '../../util/MyButton';
 // COMPONENTS
 import CreatePost from '../post/CreatePost';
 import Notifications from './Notifications';
+
 // REDUX
 import { connect } from 'react-redux';
 // Material-UI
@@ -12,6 +13,7 @@ import withStyles  from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
+import YouTubeIcon from '@material-ui/icons/YouTube';
 // Icons
 // import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
@@ -70,24 +72,24 @@ export class Navbar extends Component {
                   <HomeIcon color='primary' />
                 </MyButton>
               </Link>
-              
-              <CreatePost />
 
-              <Notifications color='primary'/>
-
-              <a href={`/${handle}`}>
+              <a href={`/user/${handle}`}>
                 <MyButton tip='Profile'>
                   <img src={imageUrl} alt={handle} className={classes.avatar} />
                 </MyButton>
               </a>
 
+              <CreatePost />
+              
+              <Notifications color='primary'/>
+
+              <Button color="inherit" component={Link} to="/youtube">
+                <YouTubeIcon/>
+              </Button>
+
             </Fragment>
           ) : (
             <Fragment>
-              <Button color="inherit" component={Link} to='/'>Home</Button>
-              <Button color="inherit" component={Link} to='/login'>Login</Button>
-              <Button color="inherit" component={Link} to='/signup'>Sign Up</Button>
-
               <a href="https://github.com/anwachuku15/social-client" target='_blank' rel='noreferrer noopener'>
                 <MyButton tip='Front-End Source Code'>
                   <DeveloperModeIcon color='secondary' />
@@ -98,7 +100,15 @@ export class Navbar extends Component {
                 <MyButton tip='Back-End Source Code'>
                   <GitHubIcon color='primary' />
                 </MyButton>
-                </a>
+              </a>
+
+              <Button color="inherit" component={Link} to='/'>Home</Button>
+              <Button color="inherit" component={Link} to='/login'>Login</Button>
+              <Button color="inherit" component={Link} to='/signup'>Sign Up</Button>
+              <Button color="inherit" component={Link} to="/youtube">
+                <YouTubeIcon/>
+              </Button>
+              
             </Fragment>
           )}
         </Toolbar>

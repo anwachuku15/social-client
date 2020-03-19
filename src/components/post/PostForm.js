@@ -72,6 +72,7 @@ export class PostForm extends Component {
     this.props.createPost({ body: this.state.body })
   }
 
+
   render() {
     const { errors } = this.state;
     const { authenticated, classes, UI: { loading }} = this.props

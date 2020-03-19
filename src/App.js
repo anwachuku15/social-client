@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
+
 // Redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -12,6 +13,7 @@ import { logoutUser, getUserData } from './redux/actions/userActions';
 // import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+
 // Pages
 import home from "./pages/home";
 import login from "./pages/login";
@@ -20,6 +22,8 @@ import register from './pages/register';
 // import signup from "./pages/signup";
 import userProfile from './pages/userProfile';
 import userFollowers from './pages/userFollowers'
+import youtube from './pages/youtube'
+
 // Components
 import Navbar from './components/layout/Navbar';
 import AuthRoute from './util/AuthRoute';
@@ -68,9 +72,10 @@ class App extends Component {
                 <AuthRoute exact path='/signup' component={register} />
                 {/* <AuthRoute exact path='/login' component={signin} /> */}
                 {/* <AuthRoute exact path='/signup' component={signup} /> */}
-                <Route exact path='/:handle' component={userProfile} />
-                <Route exact path='/:handle/post/:postId' component={userProfile} />
-                <Route exact path='/:handle/followers' component={userFollowers} />
+                <Route exact path='/user/:handle' component={userProfile} />
+                <Route exact path='/user/:handle/post/:postId' component={userProfile} />
+                <Route exact path='/user/:handle/followers' component={userFollowers} />
+                <Route exact path='/youtube' component={youtube} />
               </Switch>
             </div>
             {/* </Container> */}

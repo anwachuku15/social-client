@@ -66,7 +66,7 @@ class Notifications extends Component {
           notificationIcon = <NotificationsIcon />
         )
     } else {
-      console.log(false)
+      // console.log(false)
       notificationIcon = <NotificationsIcon />
     }
 
