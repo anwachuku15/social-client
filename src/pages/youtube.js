@@ -37,15 +37,21 @@ class youtube extends Component {
     selectedVideo: null
   }
 
-  componentDidMount(){
-    if(token){
-      axios.defaults.headers.common = {
-        Accept: "application/json"
-      }
-    }
-  }
+  // componentDidMount(){
+  //   if(token){
+  //     axios.defaults.headers.common = {
+  //       Accept: "application/json"
+  //     }
+  //   } else {
+
+  //   }
+  // }
 
   handleSubmit = async (searchQuery) => {
+    axios.defaults.headers.common = {
+      Accept: "application/json"
+    }
+
     const res = await axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
         key: youtubeAPIkey,
