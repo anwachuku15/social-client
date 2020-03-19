@@ -3,21 +3,17 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 
 
-const Video = ({video}) => {
-    const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
-    console.log(typeof(video));
-    
+const Video = ({video, clickVideo}) => {
     return (
         <Container className='col-sm-8'>
-            <div>
-                <iframe  src={videoSrc} allowFullScreen title='Video player'/>
-            </div>
-            <div className=''>
-                <h4 className=''>{video.snippet.title}</h4>
-                <p>{video.snippet.description}</p>
+            <div onClick={() => clickVideo(video)}>
+                <img src={video.snippet.thumbnails.medium.url} alt={video.snippet.description}/>
+            
+                <div>
+                    <div>{video.snippet.title}</div>
+                </div>
             </div>
         </Container>
-
     )
 }
 

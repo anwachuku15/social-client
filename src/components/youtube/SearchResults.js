@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 // MATERIAL-UI
 import withStyles from '@material-ui/core/styles/withStyles'
 import YoutubeSearchedForIcon from '@material-ui/icons/YoutubeSearchedFor';
-import { Container, TextField } from '@material-ui/core';
+import { Container, Divider, TextField } from '@material-ui/core';
 import Video from './Video';
 
 const styles = (theme) => ({
@@ -16,7 +16,14 @@ const styles = (theme) => ({
 
 const SearchResults = (props) => {
   const renderedVideos = props.videos.map(video => {
-    return <Video key={video.id.videoId} video={video} clickVideo={props.clickVideo}/>
+    return (
+      <div>
+        <Video key={video.id.videoId} video={video} clickVideo={props.clickVideo}/>
+        <br/>
+        <Divider/>
+        <br/>
+      </div>
+    )
   })
 
   return renderedVideos

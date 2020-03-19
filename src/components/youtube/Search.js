@@ -36,12 +36,13 @@ class Search extends Component {
       return (
           <Container>
             <form className={classes.form} onSubmit={this.handleSubmit}>
-              <YoutubeSearchedForIcon/>
               <TextField 
                 name='query' 
                 value={this.state.query} 
                 onChange={this.handleChange} 
                 variant="outlined"
+                // placeholder='Search Youtube'
+                placeholder='Search'
               />
             </form>
           </Container>

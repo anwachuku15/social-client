@@ -151,15 +151,15 @@ class Profile extends Component {
                                   </div>
                                   <hr/>
                                   <div className="profile-details">
-                                    <MuiLink component={Link} to={`/${handle}`} color='secondary' variant='h5'>
+                                    <MuiLink component={Link} to={`user/${handle}`} color='secondary' variant='h5'>
                                       @{handle}
                                     </MuiLink>
                                     <hr/>
-                                    <MuiLink component={Link} to={`/${handle}/followers`}>
+                                    <MuiLink component={Link} to={`user/${handle}/followers`}>
                                       <Typography variant='subtitle2' display='inline'>{followers}</Typography>&nbsp;
                                       <Typography variant='subtitle2' color='textSecondary' display='inline'>Followers</Typography>
                                     </MuiLink>&nbsp;|&nbsp;
-                                    <MuiLink component={Link} to={`/${handle}/following`}>
+                                    <MuiLink component={Link} to={`user/${handle}/following`}>
                                       <Typography variant='subtitle2' display='inline'>{following}</Typography>&nbsp;
                                       <Typography variant='subtitle2' color='textSecondary' display='inline'>Following</Typography>
                                     </MuiLink>
@@ -218,7 +218,7 @@ class Profile extends Component {
                                     <FacebookIcon/>
                                     Facebook
                                   </Button> */}
-                                  <FacebookLoginButton onClick={this.handleFacebook}/>
+                                  {/* <FacebookLoginButton onClick={this.handleFacebook}/> */}
                                 </div>
                               </Paper>
                             ) 

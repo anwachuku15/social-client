@@ -93,7 +93,7 @@ class Notifications extends Component {
                 component={Link}
                 color='textPrimary'
                 variant='body1'
-                to={`/${notification.recipient}/post/${notification.postId}`}
+                to={`/user/${notification.recipient}/post/${notification.postId}`}
               >
                 {notification.sender} {action} your post {time}
               </Typography>

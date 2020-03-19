@@ -68,11 +68,11 @@ class PostDialog extends Component {
     let oldPath = window.location.pathname;
     const { userHandle, postId } = this.props; // both passed down from Post.js
     // const { commentCount } = this.props
-    const newPath = `/${userHandle}/post/${postId}`;
+    const newPath = `user/${userHandle}/post/${postId}`;
 
     window.history.pushState(null, null, newPath) // don't pass any data, just the new path
     if(oldPath === newPath){
-      oldPath = `/${userHandle}`;
+      oldPath = `user/${userHandle}`;
     }
     this.setState({ open: true, oldPath, newPath });
     this.props.getPost(this.props.postId);

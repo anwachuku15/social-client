@@ -15,13 +15,15 @@ import Profile from '../components/profile/Profile'
 import Search from '../components/youtube/Search'
 import SearchResults from '../components/youtube/SearchResults'
 // MATERIAL-UI
+import YoutubeIcon from '@material-ui/icons/YouTube'
 import YoutubeSearchedForIcon from '@material-ui/icons/YoutubeSearchedFor';
 import withStyles from '@material-ui/core/styles/withStyles'
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import VideoDetail from '../components/youtube/Video';
+import VideoDetail from '../components/youtube/VideoDetail';
+import { Divider, Typography } from '@material-ui/core'
 
 const styles = (theme) => ({
 	...theme.spreadThis
@@ -46,7 +48,7 @@ class youtube extends Component {
   handleSubmit = async (searchQuery) => {
     const res = await axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
-        key: {youtubeAPIkey},
+        key: youtubeAPIkey,
         part:'snippet',
         q: searchQuery,
         maxResults:20
@@ -89,21 +91,32 @@ class youtube extends Component {
     // const { user: { credentials: {handle} } } = this.props;
 
     return (
-      <Container>
+      <Container maxWidth='lg'>
+        <Typography align='center' color='primary' component='h3' variant='h3' display='block'>
+          <YoutubeIcon fontSize='large' color='secondary'/> YouTube
+        </Typography>
         <Search handleForm={this.handleSubmit}/>
+        <br/>
+        <Divider/>
+        <br/>
+        <Grid container spacing={8}>
+          <Grid item sm={8} xs={12}>
+            {this.state.selectedVideo !== null ? (
+              <VideoDetail video={this.state.selectedVideo}/>
+            ) : (
+              <div style={{textAlign:'center'}}>Find a video to play!</div>
+            )}
+          </Grid>
+          
+          <Grid item sm={4} xs={12}>
+            {this.state.searchResults.length > 0 ? (
+              <SearchResults videos={this.state.searchResults} clickVideo={this.handleSelect}/>
+            ) : (
+              ''
+            )}
+          </Grid>
 
-        {/* {this.state.selectedVideo !== null ? (
-          <VideoDetail video={this.state.selectedVideo}/>
-        ) : (
-          <div>Find a video to play!</div>
-        )} */}
-
-        {this.state.searchResults.length > 0 ? (
-          <SearchResults videos={this.state.searchResults} clickVideo={this.handleSelect}/>
-        ) : (
-          ''
-        )}
-        
+        </Grid>
       </Container>
     )
   }

@@ -62,14 +62,14 @@ class Post extends Component {
     
     return (
       <Card className={classes.card}>
-        <Link to={`/${userHandle}`}>
+        <Link to={`user/${userHandle}`}>
           <Avatar alt={userHandle} src={userImage} className={classes.avatar} />
         </Link>
         <CardContent className={classes.content}>
           <Typography 
             variant="h5" 
             component={Link}
-            to={`/${userHandle}`}
+            to={`user/${userHandle}`}
             color='secondary'
           >
             {userHandle}
