@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
+import MuiLink from '@material-ui/core/Link'
 // Icons
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
@@ -92,10 +93,10 @@ class Notifications extends Component {
               <Typography
                 component={Link}
                 color='textPrimary'
-                variant='body1'
+                variant='caption'
                 to={`/user/${notification.recipient}/post/${notification.postId}`}
               >
-                {notification.sender} {action} your post {time}
+                <MuiLink component={Link} to={`/user/${notification.sender}`} color='secondary'><b>{notification.sender}</b></MuiLink> {action} your post <em>{time}</em>
               </Typography>
             </MenuItem>
           )
