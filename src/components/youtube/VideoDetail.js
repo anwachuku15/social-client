@@ -13,7 +13,7 @@ const VideoDetail = ({video}) => {
                 <iframe src={videoSrc} width='100%' height="400" allowFullScreen title='Video player'/>
                 {/* <iframe src={videoSrc} width="560" height="315" allowFullScreen title='Video player'/> */}
             </div>
-            <div className=''>
+            <div style={{color:'#f50057'}}>
                 <h4 className=''>{video.snippet.title}</h4>
                 <p>{video.snippet.description}</p>
             </div>

@@ -83,9 +83,16 @@ export class Navbar extends Component {
               
               <Notifications color='primary'/>
 
-              <Button color="inherit" component={Link} to="/youtube">
+              {/* <Button color="inherit" component={Link} to="/youtube">
                 <YouTubeIcon/>
-              </Button>
+              </Button> */}
+
+              <Link to='/youtube'>
+                <MyButton tip='YouTube'>
+                  <YouTubeIcon color='primary'/>
+                </MyButton>
+              </Link>
+              
 
             </Fragment>
           ) : (

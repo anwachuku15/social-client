@@ -61,13 +61,9 @@ class home extends Component {
 		let recentPostsMarkup = !loading ? (
 			
 				posts.map(post => (
-					// <CSSTransition
-					// 	timeout={500}
-					// 	classNames="example"
-					// 	key={post.postId}
-					// >
+					<CSSTransition timeout={500} classNames="example" key={post.postId}>
 						<Post post={post} key={post.postId} style={{minWidth:'175px'}}/>
-					// </CSSTransition>
+					</CSSTransition>
 				))
 		) : (
 				<div style={{margin:'auto', maxWidth:'10px'}}>
@@ -85,9 +81,9 @@ class home extends Component {
 
 					<Grid item sm={6} xs={12} >
 						<PostForm/><br/>
-						{/* <TransitionGroup> */}
+						<TransitionGroup>
 							{recentPostsMarkup}
-						{/* </TransitionGroup> */}
+						</TransitionGroup>
 					</Grid>
 
 					{/* <Grid item sm={4} xs={12}>

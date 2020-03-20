@@ -4,29 +4,22 @@ import axios from 'axios'
 
 import youtubeAPIkey from '../util/youtubeAPIkey'
 
-
-import Post from '../components/post/Post'
 // REDUX
 import { connect } from 'react-redux'
 import { getUserData } from '../redux/actions/dataActions'
 // COMPONENTS
-import StaticProfile from '../components/profile/StaticProfile'
-import Profile from '../components/profile/Profile'
 import Search from '../components/youtube/Search'
 import SearchResults from '../components/youtube/SearchResults'
 // MATERIAL-UI
 import YoutubeIcon from '@material-ui/icons/YouTube'
-import YoutubeSearchedForIcon from '@material-ui/icons/YoutubeSearchedFor';
 import withStyles from '@material-ui/core/styles/withStyles'
 import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
-import CircularProgress from '@material-ui/core/CircularProgress'
 import VideoDetail from '../components/youtube/VideoDetail';
 import { Divider, Typography } from '@material-ui/core'
 
 const styles = (theme) => ({
-	...theme.spreadThis
+  ...theme.spreadThis,
 })
 
 const token = localStorage.fbIdToken;
@@ -36,16 +29,6 @@ class youtube extends Component {
     searchResults: [],
     selectedVideo: null
   }
-
-  // componentDidMount(){
-  //   if(token){
-  //     axios.defaults.headers.common = {
-  //       Accept: "application/json"
-  //     }
-  //   } else {
-
-  //   }
-  // }
 
   handleSubmit = async (searchQuery) => {
     axios.defaults.headers.common = {
@@ -98,19 +81,24 @@ class youtube extends Component {
 
     return (
       <Container maxWidth='lg'>
-        <Typography align='center' color='primary' component='h3' variant='h3' display='block'>
+
+        <Typography align='center' style={{color:'white'}} component='h3' variant='h3' display='block'>
           <YoutubeIcon fontSize='large' color='secondary'/> YouTube
         </Typography>
+
         <Search handleForm={this.handleSubmit}/>
+        
         <br/>
-        <Divider/>
+        {/* <Divider /> */}
+        <hr style={{border:'1px solid #f50057'}}/>
         <br/>
+
         <Grid container spacing={8}>
           <Grid item sm={8} xs={12}>
             {this.state.selectedVideo !== null ? (
               <VideoDetail video={this.state.selectedVideo}/>
             ) : (
-              <div style={{textAlign:'center'}}>Find a video to play!</div>
+              <div style={{textAlign:'center', color:'#06d4cd'}}>Find a video to play!</div>
             )}
           </Grid>
           

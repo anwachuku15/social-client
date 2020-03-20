@@ -10,7 +10,7 @@ const Video = ({video, clickVideo}) => {
                 <img src={video.snippet.thumbnails.medium.url} alt={video.snippet.description}/>
             
                 <div>
-                    <div>{video.snippet.title}</div>
+                    <div style={{color:'#06d4cd'}}>{video.snippet.title}</div>
                 </div>
             </div>
         </Container>
