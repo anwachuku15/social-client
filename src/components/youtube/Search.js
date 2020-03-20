@@ -37,6 +37,13 @@ const styles = (theme) => ({
     margin: 4,
   },
 
+  'input2': {
+    '&::placeholder': {
+      textOverflow: 'ellipsis !important',
+      color: 'black'
+    }
+  }
+
 })
 
 

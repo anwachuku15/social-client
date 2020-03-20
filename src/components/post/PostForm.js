@@ -5,6 +5,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 import { createPost, clearErrors } from '../../redux/actions/dataActions';
 // MUI
+import Card from '@material-ui/core/Card'
+import Paper from '@material-ui/core/Paper'
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button';
@@ -37,7 +39,7 @@ const styles = (theme) => ({
   'input': {
     '&::placeholder': {
       textOverflow: 'ellipsis !important',
-      color: 'white'
+      color: 'black'
     }
   }
 })
@@ -78,41 +80,53 @@ export class PostForm extends Component {
     const { authenticated, classes, UI: { loading }} = this.props
     
     const postFormMarkup = authenticated ? (
-      <Container>
-        <Fragment>
-          <form onSubmit={this.handleSubmit}>
-            <TextField
-              value={this.state.body}
-              variant='outlined'
-              onChange={this.handleChange}
-              name='body'
-              type='text'
-              label='New Post'
-              multiline
-              rows='3'
-              placeholder={'What\'s happening?'}
-              error={errors.body ? true : false}
-              helperText={errors.body}
-              className={classes.textField}
-              fullWidth
-              style={{display: 'flex'}}
-              InputLabelProps={{style: {color: '#06d4cd'}}}
-              InputProps={{ classes: {input: classes['input']}}}
-            />
-            <Button 
-              type='submit' 
-              variant='contained' 
-              color='primary' 
-              className={classes.submitButton} 
-              disabled={loading || !(this.state.body).trim().length}
-            >
-              Submit {loading && (<CircularProgress size={30} className={classes.progressSpinner}/>)}
-            </Button>
-            <br/><br/><br/>
-          </form>
-        </Fragment>
+      <Fragment>
+      <Paper
+        style={{
+          // postion:'relative',
+          // display:'flex',
+          maxWidth: 475,
+          minWidth: 345,
+          marginBottom: 10,
+          paddingLeft: 15,
+          // background: '#ff95b8'
+        }}
+      >
+        <form onSubmit={this.handleSubmit} style={{minWidth:315,paddingRight:15,paddingBottom:15}}>
+          <TextField
+            
+            value={this.state.body}
+            variant='outlined'
+            onChange={this.handleChange}
+            name='body'
+            type='text'
+            label='New Post'
+            multiline
+            rows='3'
+            placeholder={'What\'s happening?'}
+            error={errors.body ? true : false}
+            helperText={errors.body}
+            className={classes.textField}
+            fullWidth
+            // style={{display: 'flex'}}
+            InputLabelProps={{style: {color: '#06d4cd'}}}
+            InputProps={{ classes: {input: classes['input']}}}
+          />
+          <Button 
+            type='submit' 
+            variant='contained' 
+            color='primary' 
+            className={classes.submitButton} 
+            disabled={loading || !(this.state.body).trim().length}
+          >
+            Submit {loading && (<CircularProgress size={30} className={classes.progressSpinner}/>)}
+          </Button>
+          <br/><br/><br/>
+        </form>
+        
         <Divider/>
-      </Container>
+      </Paper>
+      </Fragment>
     ) : null
 
     return postFormMarkup
