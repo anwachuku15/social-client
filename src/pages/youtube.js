@@ -20,6 +20,10 @@ import { Divider, Typography } from '@material-ui/core'
 
 const styles = (theme) => ({
   ...theme.spreadThis,
+  vl: {
+    borderLeft: '1px solid white',
+    height: 500
+  }
 })
 
 const token = localStorage.fbIdToken;
@@ -55,25 +59,6 @@ class youtube extends Component {
     })
   }
 
-  // handleSubmit = (searchQuery) => {
-  //   axios
-  //     .get('https://www.googleapis.com/youtube/v3/search', {
-  //       params: {
-  //         key: 'AIzaSyATWyxu32Jup7ZcaTkZfQTasI_7POpbbzM',
-  //         part:'snippet',
-  //         q: searchQuery,
-  //         maxResults:20
-  //       }
-  //     })
-  //     .then(res => {
-  //       this.setState({
-  //         searchResults: res.data.items
-  //       })
-  //     })
-  //     .then( () => {
-  //       console.log(this.state)
-  //     })
-  // }
 
   render() {
     const { classes } = this.props;
@@ -85,24 +70,24 @@ class youtube extends Component {
         <Typography align='center' style={{color:'white'}} component='h3' variant='h3' display='block'>
           <YoutubeIcon fontSize='large' color='secondary'/> YouTube
         </Typography>
-
-        <Search handleForm={this.handleSubmit}/>
+        <br/>
+        <Search handleForm={this.handleSubmit} />
         
         <br/>
         {/* <Divider /> */}
         <hr style={{border:'1px solid #f50057'}}/>
         <br/>
 
-        <Grid container spacing={8}>
-          <Grid item sm={8} xs={12}>
+        <Grid container spacing={1}>
+          <Grid item lg={8} md={8} sm={12} >
             {this.state.selectedVideo !== null ? (
               <VideoDetail video={this.state.selectedVideo}/>
             ) : (
               <div style={{textAlign:'center', color:'#06d4cd'}}>Find a video to play!</div>
             )}
           </Grid>
-          
-          <Grid item sm={4} xs={12}>
+          {/* <div className={classes.vl}></div> */}
+          <Grid item lg={4} md={4} sm={12}>
             {this.state.searchResults.length > 0 ? (
               <SearchResults videos={this.state.searchResults} clickVideo={this.handleSelect}/>
             ) : (
