@@ -88,7 +88,7 @@ export class Navbar extends Component {
               </Button> */}
 
               <Link to='/youtube'>
-                <MyButton tip='YouTube'>
+                <MyButton tip='Watch YouTube'>
                   <YouTubeIcon color='primary'/>
                 </MyButton>
               </Link>
@@ -112,9 +112,12 @@ export class Navbar extends Component {
               <Button color="inherit" component={Link} to='/'>Home</Button>
               <Button color="inherit" component={Link} to='/login'>Login</Button>
               <Button color="inherit" component={Link} to='/signup'>Sign Up</Button>
-              <Button color="inherit" component={Link} to="/youtube">
-                <YouTubeIcon/>
-              </Button>
+
+              <Link to='/youtube'>
+                <MyButton tip='Watch YouTube'>
+                  <YouTubeIcon color='primary'/>
+                </MyButton>
+              </Link>
               
             </Fragment>
           )}
