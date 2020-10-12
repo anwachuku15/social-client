@@ -17,12 +17,12 @@ const styles = (theme) => ({
 const SearchResults = (props) => {
   const renderedVideos = props.videos.map(video => {
     return (
-      <div>
+      <Container>
         <Video key={video.id.videoId} video={video} clickVideo={props.clickVideo}/>
         <br/>
-        <Divider/>
+        <hr style={{border: '1px solid #f50057'}}/>
         <br/>
-      </div>
+      </Container>
     )
   })
 
