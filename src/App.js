@@ -70,8 +70,6 @@ class App extends Component {
                 <Route exact path='/' component={home}/>
                 <AuthRoute exact path='/login' component={login} />
                 <AuthRoute exact path='/signup' component={register} />
-                {/* <AuthRoute exact path='/login' component={signin} /> */}
-                {/* <AuthRoute exact path='/signup' component={signup} /> */}
                 <Route exact path='/user/:handle' component={userProfile} />
                 <Route exact path='/user/:handle/post/:postId' component={userProfile} />
                 <Route exact path='/user/:handle/followers' component={userFollowers} />
