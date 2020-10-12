@@ -21,7 +21,7 @@ const styles = (theme) => ({
     alignItems: 'center',
     // padding: '2px 4px',
     display: 'flex',
-    width: 400,
+    width: 300,
     background: 'rgb(150, 150, 150)',
     // background: 'rgb(48, 48, 48)',
   },
